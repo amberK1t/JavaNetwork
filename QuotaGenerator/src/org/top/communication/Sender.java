@@ -27,10 +27,11 @@ public class Sender implements Closeable {
     }
 
     // отправка сообщения
-    public void sendMsg(String msg) {
-        // TODO: добавить выброс исключения при out == null (IOException)
+    public void sendMsg(String msg) throws IOException {
         if (out != null) {
             out.println(msg);
+        } else {
+            throw new IOException("out == null");
         }
     }
 }

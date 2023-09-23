@@ -16,7 +16,7 @@ public class Server {
     // поля
     private final String ipStr;           // адрес сервера
     private final int port;               // порт сервера
-    private final int limit;              // максимльное кол-во входящих подключений
+    private final int limit;              // максимальное кол-во входящих подключений
     //
     private ClientProcessor[] processors; // массив обработчиков клиентов
     // для многопоточности
@@ -31,7 +31,7 @@ public class Server {
 
         // создадим обработчики
         threadPool = Executors.newFixedThreadPool(limit);   // пул потоков
-        processors = new ClientProcessor[limit];            // не увеличинный лимит
+        processors = new ClientProcessor[limit];            // не увеличенный лимит
         for (int i = 0; i < processors.length; i++) {
             processors[i] = new ClientProcessor(generator);  // создали пустые обработчики
         }
@@ -43,7 +43,7 @@ public class Server {
             - при подключении очередного клиента, сервер ищет свободного обработчика для этого клиента
             - если свободный обработчик отсутствует, то клиенту отправляется соответствующий ответ и соединение разрывается
             - иначе запускается метод работы с клиентом в отдельном потоке через обработчик
-            - при завершение работы с клиентом, он отключается
+            - при завершении работы с клиентом, он отключается
      */
 
     // метод работы сервера

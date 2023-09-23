@@ -29,10 +29,11 @@ public class Receiver implements Closeable {
 
     // получение сообщения
     public String receiveMsg() throws IOException {
-        // TODO: добавить выброс исключения при in == null (IOException)
         String msg = "";
         if (in != null) {
             msg = in.readLine();
+        } else {
+            throw new IOException("in == null");
         }
         return msg;
     }

@@ -44,6 +44,7 @@ public class ClientProcessor {
     public void processClient() throws IOException {
         Sender sender = null;       // объект для отправки сообщений
         Receiver receiver = null;   // объект для получения сообщений
+        String client = remoteClient.getInetAddress() + ":" + remoteClient.getPort();
 
         try {
             // объекты для отправки и получения данных
@@ -52,19 +53,22 @@ public class ClientProcessor {
 
             // цикл работы с клиентом
             while (true) {
-                // TODO: добавить логи работы с клиентом
                 // 1. читаем сообщение
                 String msg = receiver.receiveMsg();
+                System.out.println("server: receive msg from " + client);
 
                 // 2. анализируем сообщение
                 if (msg.equals("quota")) {
                     // то отправить цитату
+                    System.out.println("server: get quota from " + client);
                     sender.sendMsg(generator.getRandomQuota());
                 } else if (msg.equals("exit")) {
+                    System.out.println("server: finish connected with" + client);
                     sender.sendMsg("bye");
                     break;
                 } else {
                     sender.sendMsg("invalid command");
+                    System.out.println("wrong msg from " + client);
                 }
             }
         }
