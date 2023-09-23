@@ -1,0 +1,21 @@
+body {
+    background-color: blanchedalmond;
+    font-size: 16pt;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;    
+    align-items: center;    
+    margin-top: 100px;    
+    gap: 20px;
+}
+
+button {
+    width: 200px;
+    height: 30px;
+}

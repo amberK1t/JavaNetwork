@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosines</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Онлайн калькулятор теоремы косинусов</h1>
+    <form method="get" action="http://localhost:8080/cos">
+        <div>
+            <label for="inputA">Первая сторона треугольника: </label>
+            <input type="number" id="inputA" name="a" required>
+        </div>
+
+        <div>
+            <label for="inputB">Вторая сторона треугольника: </label>
+            <input type="number" id="inputB" name="b" required>
+        </div>
+
+        <div>
+            <label for="inputCorner">Угол между ними: </label>
+            <input type="number" id="inputCorner" name="corner" required> 
+
+            <select name="type" id="type">
+                <option value="град">град.</option>
+                <option value="рад">рад.</option>
+            </select>
+        </div>
+
+        <button>Отправить</button>
+    </form>
+    
+</body>
+</html>
