@@ -3,10 +3,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        final String [] choices = {"Камень", "Ножницы", "Бумага"};
+//        final String [] choices = {"Камень", "Ножницы", "Бумага"};
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
-        int computerChoice = random.nextInt(choices.length);
+        int computerChoice = random.nextInt(3);
 
         System.out.println("Начало игры");
         System.out.println("0. Камень\n1. Ножницы\n2. Бумага\n");
