@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-//        final String [] choices = {"Камень", "Ножницы", "Бумага"};
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
         int computerChoice = random.nextInt(3);
