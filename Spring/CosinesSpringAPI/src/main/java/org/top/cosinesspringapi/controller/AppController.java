@@ -16,8 +16,8 @@ public class AppController {
         this.solver = solver;
     }
 
-    @GetMapping("")
-    public StringMessage index() {
+    @GetMapping("status")
+    public StringMessage status() {
         return new StringMessage( "Server is running");
     }
 

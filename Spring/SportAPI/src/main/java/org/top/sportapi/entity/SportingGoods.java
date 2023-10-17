@@ -1,4 +1,4 @@
-package org.top.sportapi;
+package org.top.sportapi.entity;
 
 import jakarta.persistence.*;
 
