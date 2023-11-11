@@ -40,7 +40,4 @@ public class ClientController {
     public Optional<Client> update(@RequestBody Client client) {
         return clientService.update(client);
     }
-
-
-
 }

@@ -41,6 +41,4 @@ public class OrderController {
     public Optional<Order> update(@PathVariable Integer id, @RequestParam String description) {
         return orderService.updateDescription(id, description);
     }
-
-
 }
