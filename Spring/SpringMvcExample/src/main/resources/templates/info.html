@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Info</title>
+    <link rel="stylesheet" th:href="@{./style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body style="text-align: center">
+    <p class="text-center text-bg-primary fs-3">Текущая дата: [[${nowDate}]]</p>
+    <table class="table table-success text-center mx-auto" style="width: 65%; margin-top: 150px">
+        <tr class="table-info">
+            <th>Характеристика</th>
+            <th>Значение</th>
+        </tr>
+        <tr>
+            <td>OS</td>
+            <td>[[${sysOs}]]</td>
+        </tr>
+        <tr>
+            <td>Version</td>
+            <td>[[${sysVersion}]]</td>
+        </tr>
+        <tr>
+            <td>Architecture</td>
+            <td>[[${sysArch}]]</td>
+        </tr>
+    </table>
+    <a th:href="@{/}">
+        <button>Назад</button>
+    </a>
+</body>
+</html>
