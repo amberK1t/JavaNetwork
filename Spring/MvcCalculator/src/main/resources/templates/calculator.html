@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор теоремы косинусов</title>
+</head>
+<body>
+    <h1>Калькулятор теорем косинусов</h1>
+    <form th:action="@{/solve}" method="post" th:object="${input}">
+        <label for="firstSide">Первая торона</label>
+        <input type="number" id="firstSide" th:field="*{firstSide}" step="any" required/>
+
+        <label for="secondSide">Вторая сторона</label>
+        <input type="number" id="secondSide" th:field="*{secondSide}" step="any" required/>
+
+        <label for="corner">Угол между ними</label>
+        <input type="number" id="corner" th:field="*{corner}" step="any" required/>
+
+        <label for="typeCorner"></label>
+        <select id="typeCorner" th:field="*{typeCorner}">
+            <option value="град">
+                градусы
+            </option>
+            <option value="рад">
+                радианы
+            </option>
+        </select>
+
+        <button>Решить</button>
+    </form>
+    <div th:if="${solution != null}">
+        <p>Искомая сторона: [[${solution}]]</p>
+    </div>
+    <div th:if="${errorMessage != null}">
+        ERROR: [[${errorMessage}]]
+    </div>
+    <div th:if="${wrongData != null}">
+        ERROR: [[${wrongData}]]
+    </div>
+
+    <a th:href="@{/}">
+        <button>Вернуться</button>
+    </a>
+
+</body>
+</html>
