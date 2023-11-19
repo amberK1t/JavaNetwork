@@ -12,7 +12,7 @@ public class Hotel {
     private Integer id;
 
     @Column(name="name_f", nullable = false)
-    private String name;    // Наимнование отеля
+    private String name;    // Наименование отеля
 
     @Column(name="address_f", nullable = false)
     private String address; // Адрес отеля

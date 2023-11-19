@@ -61,12 +61,12 @@ public class HotelController {
     public String deleteById(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
         Optional<Hotel> deleted = hotelService.deleteById(id);
         if (deleted.isPresent()) {
-            // запишем сообщение что успешно удален
+            // запишем сообщение, что успешно удален
             redirectAttributes.addFlashAttribute(
                     "successMessage",
                     "Отель " + deleted.get() + " успешно удален");
         } else {
-            // запишем сообщение что не найден такой
+            // запишем сообщение, что не найден такой
             redirectAttributes.addFlashAttribute(
                     "dangerMessage",
                     "Отель с id " + id + " не найден"
@@ -95,12 +95,12 @@ public class HotelController {
     public String postUpdateForm(Hotel hotel, RedirectAttributes redirectAttributes) {
         Optional<Hotel> updated = hotelService.update(hotel);
         if (updated.isPresent()) {
-            // запишем сообщение что успешно обновлен
+            // запишем сообщение, что успешно обновлен
             redirectAttributes.addFlashAttribute(
                     "successMessage",
                     "Отель " + updated.get() + " успешно обновлен");
         } else {
-            // запишем сообщение что не получилось обновить
+            // запишем сообщение, что не получилось обновить
             redirectAttributes.addFlashAttribute(
                     "dangerMessage",
                     "Не получилось выполнить обновление"
