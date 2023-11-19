@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotels Catalog</title>
+    <!-- подключения локального bootstrap -->
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<!-- врестка с использованием bootstrap -->
+<div class="container-fluid text-center">
+    <!-- заголовок страницы -->
+    <h1>Каталог Отелей</h1>
+
+    <!-- вывод сообщения success message -->
+    <p class="alert alert-success" th:if="${successMessage != null}">
+        [[${successMessage}]]
+    </p>
+
+    <!-- вывод сообщения danger message -->
+    <p class="alert alert-danger" th:if="${dangerMessage != null}">
+        [[${dangerMessage}]]
+    </p>
+
+    <!-- вывод списка отелей через цикл (используется таблица-->
+    <table class="table table-bordered">
+        <!-- шапка таблицы -->
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Название</th>
+                <th>Адрес</th>
+                <th>&#9733;</th>
+                <th>Рейтинг</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <!-- тело таблицы -->
+        <tbody>
+            <tr th:each="hotel: ${hotels}">
+                <td>[[${hotel.id}]]</td>
+                <td>
+                    <a th:href="@{'/hotel/' + ${hotel.id}}"> [[${hotel.name}]] </a>
+                </td>
+                <td>[[${hotel.address}]]</td>
+                <td class="text-warning">
+                    <!-- [[${hotel.classification}]] -->
+                    <th:block th:if="${hotel.classification > 0}" th:each="i: ${#numbers.sequence(0, hotel.classification - 1)}">
+                        &#9733;
+                    </th:block>
+                    <th:block th:if="${hotel.classification <= 0}">
+                        -
+                    </th:block>
+                </td>
+                <td>[[${hotel.rate}]]</td>
+                <!-- ячейка действия -->
+                <td>
+                    <a th:href="@{'/hotel/delete/' + ${hotel.id}}" class="btn btn-danger">Удалить</a>
+                    <a th:href="@{'/hotel/update/' + ${hotel.id}}" class="btn btn-primary">Редактировать</a>
+                    <a th:href="@{'/hotel/' + ${hotel.id}}" class="btn btn-success">Просмотр</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-success form-control" th:href="@{/hotel/new}">Добавить новый отель</a>
+    <h4><a th:href="@{/}">На главную</a> </h4>
+</div>
+</body>
+</html>
