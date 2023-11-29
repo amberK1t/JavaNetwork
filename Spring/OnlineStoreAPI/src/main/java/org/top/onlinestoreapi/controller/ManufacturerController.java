@@ -82,7 +82,7 @@ public class ManufacturerController {
         if (find.isPresent()) {
             redirectAttributes.addFlashAttribute(
                     "successMessage",
-                    "Производитель " + find.get() + " успешно обновлен"
+                    "Производитель " + find.get().getName() + " успешно обновлен"
             );
         } else {
             redirectAttributes.addFlashAttribute(
