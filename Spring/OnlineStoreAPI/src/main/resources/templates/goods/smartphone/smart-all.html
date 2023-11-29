@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Smartphones</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container-fluid" style="width: 70%">
+
+    <p class="alert alert-success" th:if="${successMessage != null}">
+        [[${successMessage}]]
+    </p>
+    <p class="alert alert-danger" th:if="${dangerMessage != null}">
+        [[${dangerMessage}]]
+    </p>
+
+    <table class=" table table-bordered">
+        <tbody class="table-primary">
+        <tr th:each="smart: ${smartphones}">
+            <td>
+                [[${smart.id}]].
+                <a th:href="@{'smartphone/update/' + ${smart.id}}">[[${smart.name}]]</a>
+                <img th:src="@{'/img/' + ${smart.img}}" alt="pic">
+            </td>
+            <td>
+                <div>Страна-производитель: [[${smart.countryOfOrigin}]]</div>
+                <div>Гарантия: [[${smart.guarantee}]]</div>
+                <div>Год выпуска: [[${smart.releaseYear}]]</div>
+                <div>Диагональ: [[${smart.diagonal}]]</div>
+                <div>Процессор: [[${smart.processor}]]</div>
+                <div>RAM: [[${smart.ram}]]</div>
+                <div>ROM: [[${smart.rom}]]</div>
+                <div><h3>Цена: [[${smart.price}]]</h3></div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-primary text-center" th:href="@{/smartphone/new}">Добавить</a>
+    <a class="btn btn-danger text-center" th:href="@{/}">На главную</a>
+</div>
+
+</body>
+</html>

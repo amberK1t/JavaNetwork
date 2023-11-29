@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container-fluid text-center">
+    <h1>Edit form</h1>
+    <div class="container-sm align-content-center text-center">
+        <form method="post" th:action="@{/smartphone/update}" th:object="${smartphone}">
+            <div class="mb-3 row" hidden="hidden">
+                <label class="col-sm-2 col-form-label" for="id">ID: </label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="id" type="number" th:field="*{id}"/>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label" for="name">Название: </label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="name" type="text" th:field="*{name}"/>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label" for="country">Страна-производитель: </label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="country" type="text" th:field="*{countryOfOrigin}"/>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label" for="guarantee">Гарантия: </label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="guarantee" type="number" th:field="*{guarantee}"/>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label" for="release">Год релиза: </label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="release" type="number" th:field="*{releaseYear}"/>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label" for="diagonal">Диагональ: </label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="diagonal" type="number" step="any" th:field="*{diagonal}"/>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label" for="proc">Процессор: </label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="proc" type="text" th:field="*{processor}"/>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label" for="ram">RAM: </label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="ram" type="number" th:field="*{ram}"/>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label" for="rom">ROM: </label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="rom" type="number" th:field="*{rom}"/>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label" for="price">Цена: </label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="price" type="number" th:field="*{price}"/>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label" for="img">IMG </label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="img" type="text" th:field="*{img}"/>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-5">
+                    <button class="btn btn-success form-control">Сохранить</button>
+                </div>
+                <div class="col-sm-5">
+                    <a class="btn btn-danger form-control" th:href="@{/smartphone}">Отменить</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+
+</div>
+</body>
+</html>

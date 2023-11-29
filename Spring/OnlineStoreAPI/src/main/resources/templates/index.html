@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Интернет-магазин</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="container-fluid text-center">
+    <div class="container text-center main-div">
+
+        <div class="row">
+            <div class="col-sm-2 logo">Лого</div>
+            <div class="col-sm-10 head"><h1>Добро пожаловать в интернет-магазин</h1></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 menu">
+                Меню
+                <a class="btn btn-primary" th:href="@{/manufacturer}">К производителям</a>
+                <a class="btn btn-primary" th:href="@{/smartphone}">К смартфонам</a>
+            </div>
+            <div class="col-sm-10 text-start content">
+                <h4><i>Смартфоны:</i></h4>
+                <div class="row">
+                    <div class="col items" th:each="smartphones: ${smartphones}">
+                        <span class="title">[[${smartphones.name}]]</span>
+                        <img th:src="@{'/img/' + ${smartphones.img}}" alt="pic">
+                        <span class="price">[[${smartphones.price}]] ₽</span>
+                    </div>
+
+                </div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
