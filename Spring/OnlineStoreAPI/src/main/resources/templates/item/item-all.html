@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Товары</title>
+    <th:block th:replace="layout/page-layout.html :: page-head"/>
+</head>
+<body>
+<div class="container-fluid text-center">
+    <div class="container text-center main-div">
+        <th:block th:replace="layout/page-layout.html :: page-logo"/>
+        <div class="row">
+            <th:block th:replace="layout/page-layout.html :: page-nav"/>
+            <div class="col-sm-10 text-start content">
+
+                <div class="container-fluid">
+
+                    <p class="alert alert-success" th:if="${successMessage != null}">
+                        [[${successMessage}]]
+                    </p>
+                    <p class="alert alert-danger" th:if="${dangerMessage != null}">
+                        [[${dangerMessage}]]
+                    </p>
+
+                    <table class="table table-bordered">
+                        <tbody class="table">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <a class="btn btn-primary text-center" th:href="@{/item/new}">Добавить</a>
+                            </td>
+                        </tr>
+                        <tr th:if="${items} != null" th:each="item: ${items}">
+                            <td class="col-sm-2 text-center">
+                                <a class="title" th:href="@{'/item/' + ${item.id}}">[[${item.name}]]
+                                    <img class="img-all" th:src="@{'/img/' + ${item.img}}" alt="pic" style="width: auto">
+                                </a>
+                            </td>
+                            <td class="col-sm-7">
+                                <div>
+                                    <div>Страна-производитель: [[${item.countryOfOrigin}]]</div>
+                                    <div>Гарантия: [[${item.guarantee}]]</div>
+                                    <div>Год выпуска: [[${item.releaseYear}]]</div>
+                                    <div>Диагональ: [[${item.diagonal}]]</div>
+                                    <div><h3>Цена: [[${item.price}]] ₽</h3></div>
+                                </div>
+                                <div>
+                                    <a th:href="@{/}"><button class="cart_all">В корзину</button></a>
+                                </div>
+
+                            </td>
+                            <td class="col-sm-1 text-center align-middle container gy-lg-5">
+                                <a th:href="@{'/item/' + ${item.id}}">
+                                    <img th:src="@{/img/ico/details-ico.png}" alt="pic" width="55vh">
+                                </a>
+
+                                <a th:href="@{'/item/update/' + ${item.id}}">
+                                    <img th:src="@{/img/ico/update-ico.png}" alt="pic" width="55vh">
+                                </a>
+
+                                <a th:href="@{'/item/delete/' + ${item.id}}">
+                                    <img th:src="@{/img/ico/delete-ico.png}" alt="pic" width="55vh">
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
