@@ -1,37 +1,46 @@
 body {
-    background-color: #cdd1d2;
+    background-color: #ffffff;
 }
 
 .main-div {
+    background-color: #7da1e8;
+    border-radius: 25px;
     margin-top: 30px;
     margin-bottom: 30px;
+    min-height: 100vh;
 }
 
 .logo {
-    background-color: blanchedalmond;
-    height: 15vh;
+    background-color: #7da1e8;
+    height: 20vh;
     border-top-left-radius: 25px;
 }
 
 .head {
-    background-color: blanchedalmond;
-    height: 15vh;
+    background-color: #7da1e8;
+    height: 20vh;
     border-top-right-radius: 25px;
 }
 
 .menu {
-    background-color: aquamarine;
+    background-color: #7da1e8;
     border-bottom-left-radius: 25px;
+    min-height: 100vh;
 }
 
 .menu a {
     width: 18vh;
     margin: 5px;
+    color: white;
+    border: 1px solid white;
+    border-radius: 2vh;
 }
 
 .content {
-    background-color: #f5f5f5;
+    background-color: #ccd5f5;
     border-bottom-right-radius: 25px;
+    border-top-left-radius: 25px;
+    min-height: 100vh;
 }
 
 .content h4 {
@@ -41,7 +50,7 @@ body {
 
 .items {
     width: 20vh;
-    height: 35vh;
+    height: 40vh;
     margin: 20px;
     padding: 20px;
     background-color: white;
@@ -51,11 +60,10 @@ body {
     align-items: center;
 }
 
-.items img {
-    width: 15vh;
-    height: 15vh;
-    display: block;
-}
+/*.items img {*/
+/*    width: 15vh;*/
+/*    height: 15vh;*/
+/*}*/
 
 .title {
     font-weight: bold;
@@ -65,7 +73,7 @@ body {
 
 .price {
     font-weight: bold;
-    margin-top: 40px;
+    margin-top: 2vh;
     font-size: 24pt;
 }
 
@@ -76,4 +84,60 @@ body {
 .img-all {
     width: 25vh;
     height: 25vh;
+    /*width: auto;*/
+}
+
+.more-info {
+    background-color: white;
+    padding: 20px;
+    font-size: 16pt;
+    text-align: justify;
+}
+
+.img-details {
+    width: 50vh;
+}
+
+.stats {
+    font-size: 16pt;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.logo img {
+    padding-top: 2.5vh;
+    width: 15vh;
+}
+
+.cart {
+    width: 25vh;
+    height: 10vh;
+    border: #7da1e8;
+    border-radius: 2vh;
+    background-color: #7da1e8;
+    margin-top: 15vh;
+}
+.cart_ind {
+    width: 20vh;
+    height: 5vh;
+    border: #7da1e8;
+    border-radius: 1vh;
+    background-color: #7da1e8;
+    margin-top: 2vh;
+}
+
+.cart_all {
+    width: 20vh;
+    height: 7vh;
+    border: #7da1e8;
+    border-radius: 2vh;
+    background-color: #7da1e8;
+}
+
+.cart:hover, .cart_ind:hover, .cart_all:hover {
+    color: #0c2b4b;
+    border: 2px solid white;
 }

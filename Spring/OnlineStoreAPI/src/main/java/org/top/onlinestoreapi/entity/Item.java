@@ -1,10 +1,12 @@
-package org.top.onlinestoreapi.entity.goods;
+package org.top.onlinestoreapi.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "item_t")
-public class Smartphone {
+public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,20 +27,33 @@ public class Smartphone {
     @Column(name = "diagonal_f")
     private Double diagonal;
 
-    @Column(name = "proc_f")
-    private String processor;
-
-    @Column(name = "ram_f")
-    private Integer ram;
-
-    @Column(name = "rom_f")
-    private  Integer rom;
+    @Column(name = "type")
+    private String type;
 
     @Column(name = "img_f")
     private String img;
 
     @Column(name = "price_f")
     private Integer price;
+
+    @OneToMany
+    private Set<Position> positionSet;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Set<Position> getPositionSet() {
+        return positionSet;
+    }
+
+    public void setPositionSet(Set<Position> positionSet) {
+        this.positionSet = positionSet;
+    }
 
     public Integer getPrice() {
         return price;
@@ -104,29 +119,7 @@ public class Smartphone {
         this.diagonal = diagonal;
     }
 
-    public String getProcessor() {
-        return processor;
-    }
 
-    public void setProcessor(String processor) {
-        this.processor = processor;
-    }
-
-    public Integer getRam() {
-        return ram;
-    }
-
-    public void setRam(Integer ram) {
-        this.ram = ram;
-    }
-
-    public Integer getRom() {
-        return rom;
-    }
-
-    public void setRom(Integer rom) {
-        this.rom = rom;
-    }
 
     @Override
     public String toString() {
@@ -137,9 +130,8 @@ public class Smartphone {
                 ", guarantee=" + guarantee +
                 ", releaseYear=" + releaseYear +
                 ", diagonal=" + diagonal +
-                ", processor='" + processor + '\'' +
-                ", ram=" + ram +
-                ", rom=" + rom +
+                ", img='" + img + '\'' +
+                ", price=" + price +
                 '}';
     }
 }

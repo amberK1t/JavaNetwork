@@ -3,36 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <title>Интернет-магазин</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <th:block th:replace="layout/page-layout.html :: page-head"/>
 </head>
 <body>
+
+<p class="alert alert-success" th:if="${successMessage != null}">
+    [[${successMessage}]]
+</p>
+
+<!-- вывод сообщения danger message -->
+<p class="alert alert-danger" th:if="${dangerMessage != null}">
+    [[${dangerMessage}]]
+</p>
+
 <div class="container-fluid text-center">
     <div class="container text-center main-div">
 
+        <th:block th:replace="layout/page-layout.html :: page-logo"/>
         <div class="row">
-            <div class="col-sm-2 logo">Лого</div>
-            <div class="col-sm-10 head"><h1>Добро пожаловать в интернет-магазин</h1></div>
-        </div>
-        <div class="row">
-            <div class="col-sm-2 menu">
-                Меню
-                <a class="btn btn-primary" th:href="@{/manufacturer}">К производителям</a>
-                <a class="btn btn-primary" th:href="@{/smartphone}">К смартфонам</a>
-                <a class="btn btn-primary text-center" th:href="@{/smartphone/new}">Добавить</a>
-            </div>
+            <th:block th:replace="layout/page-layout.html :: page-nav"/>
+
             <div class="col-sm-10 text-start content">
-                <h4><i>Смартфоны:</i></h4>
                 <div class="row">
-                    <div class="col items" th:each="smartphones: ${smartphones}">
-                        <span class="title">[[${smartphones.name}]]</span>
-                        <img th:src="@{'/img/' + ${smartphones.img}}" alt="pic">
-                        <span class="price">[[${smartphones.price}]] ₽</span>
-                    </div>
+                    <th:block th:if="${smartphones != null}">
+                        <h4><i>Смартфоны:</i></h4>
+                        <div class="col text-center items" th:each="smartphone: ${smartphones}">
+                            <a th:href="@{'item/' + ${smartphone.id}}">
+                                <span class="title">[[${smartphone.name}]]</span>
+                                <img th:src="@{'/img/' + ${smartphone.img}}" alt="pic">
+                            </a>
+                            <span class="price">[[${smartphone.price}]] ₽</span>
+                            <a th:href="@{/}">
+                                <button class="cart_ind">В корзину</button>
+                            </a>
+                        </div>
+                    </th:block>
 
                 </div>
-                <div></div>
-                <div></div>
+
+                <div class="row">
+                    <th:block th:if="${tvs != null}">
+                        <h4><i>Телевизоры:</i></h4>
+                        <div class="col text-center items" th:each="tv: ${tvs}">
+                            <a th:href="@{'item/' + ${tv.id}}">
+                                <span class="title">[[${tv.name}]]</span>
+                                <div class="img_ind"><img th:src="@{'/img/' + ${tv.img}}" alt="pic"></div>
+                            </a>
+                            <span class="price">[[${tv.price}]] ₽</span>
+                            <a th:href="@{/}">
+                                <button class="cart_ind">В корзину</button>
+                            </a>
+                        </div>
+                    </th:block>
+
+                </div>
+
+                <div class="row">
+                    <th:block th:if="${laptops != null}">
+                        <h4><i>Ноутбуки:</i></h4>
+                        <div class="col text-center items" th:each="laptop: ${laptops}">
+                            <a th:href="@{'item/' + ${laptop.id}}">
+                                <span class="title">[[${laptop.name}]]</span>
+                                <img th:src="@{'/img/' + ${laptop.img}}" alt="pic">
+                            </a>
+                            <span class="price">[[${laptop.price}]] ₽</span>
+                            <a th:href="@{/}">
+                                <button class="cart_ind">В корзину</button>
+                            </a>
+                        </div>
+                    </th:block>
+
+                </div>
+
             </div>
         </div>
     </div>
