@@ -11,7 +11,6 @@
     [[${successMessage}]]
 </p>
 
-<!-- вывод сообщения danger message -->
 <p class="alert alert-danger" th:if="${dangerMessage != null}">
     [[${dangerMessage}]]
 </p>
@@ -29,8 +28,8 @@
                         <h4><i>Смартфоны:</i></h4>
                         <div class="col text-center items" th:each="smartphone: ${smartphones}">
                             <a th:href="@{'item/' + ${smartphone.id}}">
-                                <span class="title">[[${smartphone.name}]]</span>
-                                <img th:src="@{'/img/' + ${smartphone.img}}" alt="pic">
+                                <div class="title">[[${smartphone.name}]]</div>
+                                <img class="img_ind" th:src="@{'/img/' + ${smartphone.img}}" alt="pic">
                             </a>
                             <span class="price">[[${smartphone.price}]] ₽</span>
                             <a th:href="@{/}">
@@ -46,8 +45,8 @@
                         <h4><i>Телевизоры:</i></h4>
                         <div class="col text-center items" th:each="tv: ${tvs}">
                             <a th:href="@{'item/' + ${tv.id}}">
-                                <span class="title">[[${tv.name}]]</span>
-                                <div class="img_ind"><img th:src="@{'/img/' + ${tv.img}}" alt="pic"></div>
+                                <div class="title">[[${tv.name}]]</div>
+                                <img th:src="@{'/img/' + ${tv.img}}" alt="pic" style="width: auto">
                             </a>
                             <span class="price">[[${tv.price}]] ₽</span>
                             <a th:href="@{/}">
@@ -63,7 +62,7 @@
                         <h4><i>Ноутбуки:</i></h4>
                         <div class="col text-center items" th:each="laptop: ${laptops}">
                             <a th:href="@{'item/' + ${laptop.id}}">
-                                <span class="title">[[${laptop.name}]]</span>
+                                <div class="title">[[${laptop.name}]]</div>
                                 <img th:src="@{'/img/' + ${laptop.img}}" alt="pic">
                             </a>
                             <span class="price">[[${laptop.price}]] ₽</span>

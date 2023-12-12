@@ -23,13 +23,9 @@ public class ItemController {
     }
 
     @GetMapping("")
-    public String getAll(Model model) {
-        Iterable<Item> smartphones = itemService.getAll("smartphone");
-        Iterable<Item> tvs = itemService.getAll("tv");
-        Iterable<Item> laptops = itemService.getAll("laptop");
-        model.addAttribute("smartphones", smartphones);
-        model.addAttribute("tvs", tvs);
-        model.addAttribute("laptops", laptops);
+    public String getAll(Model model) {//
+        Iterable<Item> items = itemService.getAll();
+        model.addAttribute("items", items);
         return "item/item-all";
     }
 
@@ -65,8 +61,8 @@ public class ItemController {
     }
 
     @PostMapping("new")
-    public String postNew(Item smartphone, RedirectAttributes redirectAttributes) {
-        Optional<Item> add = itemService.addNew(smartphone);
+    public String postNew(Item item, RedirectAttributes redirectAttributes) {
+        Optional<Item> add = itemService.addNew(item);
         if (add.isPresent()) {
             redirectAttributes.addFlashAttribute(
                     "successMessage",
@@ -116,6 +112,15 @@ public class ItemController {
                     "successMessage",
                     "Товар " + updated.get().getName() + " успешно обновлен"
             );
+            if (updated.get().getType().equals("smartphone")) {
+                return "redirect:/item/smartphone";
+            }
+            else if (updated.get().getType().equals("tv")) {
+                return "redirect:/item/tv";
+            }
+            else if (updated.get().getType().equals("laptop")) {
+                return "redirect:/item/laptop";
+            }
         } else {
             redirectAttributes.addFlashAttribute(
                     "dangerMessage",

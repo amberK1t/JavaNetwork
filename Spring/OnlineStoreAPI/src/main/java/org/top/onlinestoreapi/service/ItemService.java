@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ItemService {
+    Iterable<Item> getAll();
     Iterable<Item> getAll(String type);
     List<Item> getAllLimit(String type);
     Optional<Item> addNew(Item smartphone);

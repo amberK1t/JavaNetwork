@@ -39,6 +39,22 @@ public class Item {
     @OneToMany
     private Set<Position> positionSet;
 
+    public Item() {
+
+    }
+
+    public Item(Integer id, String name, String countryOfOrigin, Integer guarantee, Integer releaseYear, Double diagonal, String type, String img, Integer price) {
+        this.id = 0;
+        this.name = "";
+        this.countryOfOrigin = "";
+        this.guarantee = 0;
+        this.releaseYear = 0;
+        this.diagonal = 0.0;
+        this.type = "";
+        this.img = "";
+        this.price = 0;
+    }
+
     public String getType() {
         return type;
     }

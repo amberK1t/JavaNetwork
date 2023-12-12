@@ -33,7 +33,8 @@
                         </tr>
                         <tr th:if="${items} != null" th:each="item: ${items}">
                             <td class="col-sm-2 text-center">
-                                <a class="title" th:href="@{'/item/' + ${item.id}}">[[${item.name}]]
+                                <a th:href="@{'/item/' + ${item.id}}">
+                                    <div class="title">[[${item.name}]]</div>
                                     <img class="img-all" th:src="@{'/img/' + ${item.img}}" alt="pic" style="width: auto">
                                 </a>
                             </td>

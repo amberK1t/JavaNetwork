@@ -18,11 +18,22 @@ public class Client {
     @Column(name = "password_f", nullable = false)
     private String password;
 
+    @Column(name = "role_f")
+    private String role;
+
     @Column(name = "name_f")
     private String name;
 
     @OneToMany(mappedBy = "client")
     private Set<Order> orderSet;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public Integer getId() {
         return id;
