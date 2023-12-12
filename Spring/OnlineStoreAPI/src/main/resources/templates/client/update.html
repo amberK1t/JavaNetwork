@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать</title>
+    <th:block th:replace="layout/page-layout.html :: page-head"/>
+</head>
+<body>
+
+<div class="container-fluid text-center">
+    <div class="container text-center main-div">
+
+        <th:block th:replace="layout/page-layout.html :: page-logo"/>
+        <div class="row">
+            <th:block th:replace="layout/page-layout.html :: page-nav"/>
+
+            <div class="col-sm-10 text-start content">
+
+                <div class="container-fluid text-center">
+                    <h1>Edit form</h1>
+                    <div class="container-sm align-content-center text-center">
+                        <form method="post" th:action="@{/client/update}" th:object="${client}">
+                            <div class="mb-3 row" hidden="hidden">
+                                <label class="col-sm-2 col-form-label" for="id">ID: </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" id="id" type="number" th:field="*{id}"/>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label class="col-sm-2 col-form-label" for="login">Логин: </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" id="login" type="text" th:field="*{login}"/>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row" hidden="hidden">
+                                <label class="col-sm-2 col-form-label" for="password">Пароль: </label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" id="password" type="text" minlength="1"
+                                           th:field="*{password}" required/>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label class="col-sm-2 col-form-label" for="role">Роль: </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" id="role" type="text" th:field="*{role}"/>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label class="col-sm-2 col-form-label" for="name">Имя: </label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" id="name" type="text" th:field="*{name}"/>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-5">
+                                    <button class="btn btn-success form-control">Сохранить</button>
+                                </div>
+                                <div class="col-sm-5">
+                                    <a class="btn btn-danger form-control" th:href="@{/client}">Отменить</a>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

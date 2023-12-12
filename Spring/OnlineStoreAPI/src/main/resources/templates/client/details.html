@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${client.name}]]</title>
+    <th:block th:replace="layout/page-layout.html :: page-head"/>
+</head>
+<body>
+<div class="container-fluid text-center">
+    <div class="container text-center main-div">
+        <th:block th:replace="layout/page-layout.html :: page-logo"/>
+        <div class="row">
+            <th:block th:replace="layout/page-layout.html :: page-nav"/>
+            <div class="col-sm-10 text-capitalize content">
+                <table class="table">
+                    <tbody>
+                    <tr class="text-center">
+                        <td>
+                            <h2>[[${client.name}]]</h2>
+                        </td>
+                        <td></td>
+
+                    </tr>
+                    <tr>
+                        <td class="col-sm-5 text-center">
+
+                        </td>
+                        <td class="col-sm-5 text-end stats">
+                            <div>Логин: [[${client.login}]]</div>
+                            <div>Имя: [[${client.name}]]</div>
+                            <div>Роль: [[${client.role}]]</div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Заказы</title>
+    <th:block th:replace="layout/page-layout.html :: page-head"/>
+</head>
+<body>
+<div class="container-fluid text-center">
+    <div class="container text-center main-div">
+        <th:block th:replace="layout/page-layout.html :: page-logo"/>
+        <div class="row">
+            <th:block th:replace="layout/page-layout.html :: page-nav"/>
+            <div class="col-sm-10 text-start content">
+
+                <div class="container-fluid">
+
+                    <p class="alert alert-success" th:if="${successMessage != null}">
+                        [[${successMessage}]]
+                    </p>
+                    <p class="alert alert-danger" th:if="${dangerMessage != null}">
+                        [[${dangerMessage}]]
+                    </p>
+
+                    <table class="table table-bordered">
+                        <tbody class="table">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <a class="btn btn-primary text-center" th:href="@{/order/new}">Добавить</a>
+                            </td>
+                        </tr>
+                        <tr th:if="${orders} != null" th:each="order: ${orders}">
+                            <td class="col-sm-2 text-center">
+                                <a th:href="@{'/order/' + ${order.id}}">
+                                    <div class="title">Заказ [[${order.id}]].</div>
+                                </a>
+                            </td>
+                            <td class="col-sm-7">
+                                <div>
+                                    <div>Описание: [[${order.description}]]</div>
+                                </div>
+                            </td>
+                            <td class="col-sm-1 text-center align-middle container gy-lg-5">
+                                <a th:href="@{'/order/' + ${order.id}}">
+                                    <img th:src="@{/img/ico/details-ico.png}" alt="pic" width="55vh">
+                                </a>
+
+                                <a th:href="@{'/order/update/' + ${order.id}}">
+                                    <img th:src="@{/img/ico/update-ico.png}" alt="pic" width="55vh">
+                                </a>
+
+                                <a th:href="@{'/order/delete/' + ${order.id}}">
+                                    <img th:src="@{/img/ico/delete-ico.png}" alt="pic" width="55vh">
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
