@@ -1,4 +1,4 @@
-package org.top.onlinestoreapi.repository;
+package org.top.onlinestoreapi.rdb.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.top.onlinestoreapi.entity.Order;

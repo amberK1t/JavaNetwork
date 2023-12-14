@@ -52,6 +52,15 @@ body {
     margin-left: 30px;
 }
 
+.login, .register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10vh;
+    gap: 2vh;
+}
+
 .items {
     width: 20vh;
     height: 35vh;
@@ -152,4 +161,11 @@ a {
 .cart:hover, .cart_ind:hover, .cart_all:hover {
     color: #0c2b4b;
     border: 2px solid white;
+}
+
+.username {
+    font-size: 18pt;
+    font-weight: bold;
+    padding-right: 3vh;
+    color: white;
 }

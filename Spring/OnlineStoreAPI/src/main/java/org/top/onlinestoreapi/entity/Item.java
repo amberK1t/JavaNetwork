@@ -40,10 +40,6 @@ public class Item {
     private Set<Position> positionSet;
 
     public Item() {
-
-    }
-
-    public Item(Integer id, String name, String countryOfOrigin, Integer guarantee, Integer releaseYear, Double diagonal, String type, String img, Integer price) {
         this.id = 0;
         this.name = "";
         this.countryOfOrigin = "";

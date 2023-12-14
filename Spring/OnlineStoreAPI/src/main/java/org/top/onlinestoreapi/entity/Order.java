@@ -22,6 +22,12 @@ public class Order {
     @OneToMany(mappedBy = "order")
     private Set<Position> positionSet;
 
+    public Order() {
+        this.id = 0;
+        this.description = "";
+        this.client = null;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Товары</title>
@@ -28,7 +28,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                                <a class="btn btn-primary text-center" th:href="@{/item/new}">Добавить</a>
+                                <a sec:authorize="hasRole('ADMIN')" class="btn btn-primary text-center" th:href="@{/item/new}">Добавить</a>
                             </td>
                         </tr>
                         <tr th:if="${items} != null" th:each="item: ${items}">
@@ -52,17 +52,20 @@
 
                             </td>
                             <td class="col-sm-1 text-center align-middle container gy-lg-5">
-                                <a th:href="@{'/item/' + ${item.id}}">
-                                    <img th:src="@{/img/ico/details-ico.png}" alt="pic" width="55vh">
-                                </a>
+                                <div sec:authorize="hasRole('ADMIN')">
+                                    <a th:href="@{'/item/' + ${item.id}}">
+                                        <img th:src="@{/img/ico/details-ico.png}" alt="pic" width="55vh">
+                                    </a>
 
-                                <a th:href="@{'/item/update/' + ${item.id}}">
-                                    <img th:src="@{/img/ico/update-ico.png}" alt="pic" width="55vh">
-                                </a>
+                                    <a th:href="@{'/item/update/' + ${item.id}}">
+                                        <img th:src="@{/img/ico/update-ico.png}" alt="pic" width="55vh">
+                                    </a>
 
-                                <a th:href="@{'/item/delete/' + ${item.id}}">
-                                    <img th:src="@{/img/ico/delete-ico.png}" alt="pic" width="55vh">
-                                </a>
+                                    <a th:href="@{'/item/delete/' + ${item.id}}">
+                                        <img th:src="@{/img/ico/delete-ico.png}" alt="pic" width="55vh">
+                                    </a>
+                                </div>
+
                             </td>
                         </tr>
                         </tbody>

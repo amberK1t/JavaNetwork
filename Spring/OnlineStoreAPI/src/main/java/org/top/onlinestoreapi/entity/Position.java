@@ -21,6 +21,11 @@ public class Position {
     @JoinColumn(name = "item_id")
     private Item item;
 
+    public Position() {
+        this.id = 0;
+        this.quantity = 0;
+    }
+
     public Integer getId() {
         return id;
     }

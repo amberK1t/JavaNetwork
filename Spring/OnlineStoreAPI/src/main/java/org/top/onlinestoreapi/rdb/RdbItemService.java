@@ -2,7 +2,7 @@ package org.top.onlinestoreapi.rdb.goods;
 
 import org.springframework.stereotype.Service;
 import org.top.onlinestoreapi.entity.Item;
-import org.top.onlinestoreapi.repository.ItemRepository;
+import org.top.onlinestoreapi.rdb.repository.ItemRepository;
 import org.top.onlinestoreapi.service.ItemService;
 
 import java.util.*;

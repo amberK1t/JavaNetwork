@@ -2,7 +2,7 @@ package org.top.onlinestoreapi.rdb;
 
 import org.springframework.stereotype.Service;
 import org.top.onlinestoreapi.entity.Client;
-import org.top.onlinestoreapi.repository.ClientRepository;
+import org.top.onlinestoreapi.rdb.repository.ClientRepository;
 import org.top.onlinestoreapi.service.ClientService;
 import java.util.Optional;
 

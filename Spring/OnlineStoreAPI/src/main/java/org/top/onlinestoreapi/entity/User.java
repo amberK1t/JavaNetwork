@@ -2,12 +2,9 @@ package org.top.onlinestoreapi.entity;
 
 import jakarta.persistence.*;
 
-import java.util.Set;
-
 @Entity
-@Table(name = "client_t")
-public class Client {
-
+@Table(name = "user_t")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -18,29 +15,14 @@ public class Client {
     @Column(name = "password_f", nullable = false)
     private String password;
 
-    @Column(name = "role_f")
+    @Column(name = "role_f", nullable = false)
     private String role;
 
-    @Column(name = "name_f")
-    private String name;
-
-    @OneToMany(mappedBy = "client")
-    private Set<Order> orderSet;
-
-    public Client() {
+    public User() {
         this.id = 0;
         this.login = "";
         this.password = "";
-        this.role = "USER";
-        this.name = "";
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
+        this.role = "";
     }
 
     public Integer getId() {
@@ -67,21 +49,20 @@ public class Client {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getRole() {
+        return role;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override
     public String toString() {
-        return "Client{" +
+        return "User{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }
