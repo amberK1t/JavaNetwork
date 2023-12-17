@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>[[${item.name}]]</title>
@@ -22,8 +22,11 @@
 
                     </tr>
                     <tr>
-                        <td class="col-sm-5 text-center">
-                            <img class="img-details" th:src="@{'/img/' + ${item.img}}" alt="pic">
+                        <td th:if="${!item.imgData.equals('')}" class="col-sm-5 text-center">
+                            <img class="img-details" th:src="@{'data:image/jpeg;base64,' + ${item.imgData}}" alt="pic">
+                        </td>
+                        <td th:if="${item.imgData.equals('')}">
+                            <img class="img-details" th:src="@{/img/no-image.jpg}" alt="pic">
                         </td>
                         <td class="col-sm-5 text-end stats">
                             <div>Страна-производитель: [[${item.countryOfOrigin}]]</div>
@@ -31,7 +34,7 @@
                             <div>Год выпуска: [[${item.releaseYear}]]</div>
                             <div>Диагональ: [[${item.diagonal}]]</div>
                             <div><h3>Цена: [[${item.price}]] ₽</h3></div>
-                            <a th:href="@{/}"><button class="cart">В корзину</button></a>
+                            <a sec:authorize="hasRole('USER')" th:href="@{/}"><button class="cart">В корзину</button></a>
                         </td>
                     </tr>
                     </tbody>

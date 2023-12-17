@@ -2,14 +2,14 @@ package org.top.onlinestoreapi.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.top.onlinestoreapi.entity.Item;
 import org.top.onlinestoreapi.service.ItemService;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.Optional;
 
 @Controller
@@ -61,7 +61,9 @@ public class ItemController {
     }
 
     @PostMapping("new")
-    public String postNew(Item item, RedirectAttributes redirectAttributes) {
+    public String postNew(Item item, @RequestParam MultipartFile img, RedirectAttributes redirectAttributes) throws IOException {
+        String imgData = Base64.getEncoder().encodeToString(img.getBytes());
+        item.setImgData(imgData);
         Optional<Item> add = itemService.addNew(item);
         if (add.isPresent()) {
             redirectAttributes.addFlashAttribute(
@@ -105,7 +107,9 @@ public class ItemController {
     }
 
     @PostMapping("/update")
-    public String postUpdate(Item item, RedirectAttributes redirectAttributes) {
+    public String postUpdate(Item item, @RequestParam MultipartFile img, RedirectAttributes redirectAttributes) throws IOException {
+        String imgData = Base64.getEncoder().encodeToString(img.getBytes());
+        item.setImgData(imgData);
         Optional<Item> updated = itemService.update(item);
         if (updated.isPresent()) {
             redirectAttributes.addFlashAttribute(

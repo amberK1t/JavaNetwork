@@ -30,8 +30,9 @@ public class Item {
     @Column(name = "type")
     private String type;
 
-    @Column(name = "img_f")
-    private String img;
+    @Lob
+    @Column(name = "img_f", columnDefinition = "MEDIUMBLOB")
+    private String imgData;
 
     @Column(name = "price_f")
     private Integer price;
@@ -47,7 +48,7 @@ public class Item {
         this.releaseYear = 0;
         this.diagonal = 0.0;
         this.type = "";
-        this.img = "";
+        this.imgData = null;
         this.price = 0;
     }
 
@@ -75,12 +76,12 @@ public class Item {
         this.price = price;
     }
 
-    public String getImg() {
-        return img;
+    public String getImgData() {
+        return imgData;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setImgData(String imgData) {
+        this.imgData = imgData;
     }
 
     public Integer getId() {
@@ -142,7 +143,6 @@ public class Item {
                 ", guarantee=" + guarantee +
                 ", releaseYear=" + releaseYear +
                 ", diagonal=" + diagonal +
-                ", img='" + img + '\'' +
                 ", price=" + price +
                 '}';
     }

@@ -57,7 +57,7 @@ public class ClientController {
         if (add.isPresent()) {
             redirectAttributes.addFlashAttribute(
                     "successMessage",
-                    "Клиент " + client.getLogin() + " успешно добавлен");
+                    "Клиент " + client.getUser().getLogin() + " успешно добавлен");
         }
         return "redirect:/client";
     }

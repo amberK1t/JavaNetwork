@@ -19,7 +19,7 @@
                 <div class="container-fluid text-center">
                     <h1>Edit form</h1>
                     <div class="container-sm align-content-center text-center">
-                        <form method="post" th:action="@{/item/update}" th:object="${item}">
+                        <form method="post" th:action="@{/item/update}" th:object="${item}" enctype="multipart/form-data">
                             <div class="mb-3 row" hidden="hidden">
                                 <label class="col-sm-2 col-form-label" for="id">ID: </label>
                                 <div class="col-sm-10">
@@ -84,7 +84,7 @@
                             <div class="mb-3 row">
                                 <label class="col-sm-2 col-form-label" for="img">IMG </label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" id="img" type="text" th:field="*{img}"/>
+                                    <input class="form-control" id="img" name="img" type="file"/>
                                 </div>
                             </div>
 

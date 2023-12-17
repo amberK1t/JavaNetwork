@@ -35,7 +35,10 @@
                             <td class="col-sm-2 text-center">
                                 <a th:href="@{'/item/' + ${item.id}}">
                                     <div class="title">[[${item.name}]]</div>
-                                    <img class="img-all" th:src="@{'/img/' + ${item.img}}" alt="pic" style="width: auto">
+                                    <img th:if="${!item.imgData.equals('')}" class="img-all"
+                                         th:src="@{'data:image/jpeg;base64,' + ${item.imgData}}" alt="pic" style="width: auto">
+                                    <img th:if="${item.imgData.equals('')}" class="img_all"
+                                         th:src="@{/img/no-image.jpg}" alt="pic" style="width: auto">
                                 </a>
                             </td>
                             <td class="col-sm-7">
@@ -47,7 +50,7 @@
                                     <div><h3>Цена: [[${item.price}]] ₽</h3></div>
                                 </div>
                                 <div>
-                                    <a th:href="@{/}"><button class="cart_all">В корзину</button></a>
+                                    <a sec:authorize="hasRole('USER')" th:href="@{/}"><button class="cart_all">В корзину</button></a>
                                 </div>
 
                             </td>

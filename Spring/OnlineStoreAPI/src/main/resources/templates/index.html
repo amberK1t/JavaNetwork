@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Интернет-магазин</title>
@@ -29,10 +29,13 @@
                         <div class="col text-center items" th:each="smartphone: ${smartphones}">
                             <a th:href="@{'item/' + ${smartphone.id}}">
                                 <div class="title">[[${smartphone.name}]]</div>
-                                <img class="img_ind" th:src="@{'/img/' + ${smartphone.img}}" alt="pic">
+                                <img th:if="${!smartphone.imgData.equals('')}" class="img_ind"
+                                     th:src="@{'data:image/jpeg;base64,' + ${smartphone.imgData}}" alt="pic">
+                                <img th:if="${smartphone.imgData.equals('')}" class="img_ind"
+                                     th:src="@{/img/no-image.jpg}" alt="pic">
                             </a>
                             <span class="price">[[${smartphone.price}]] ₽</span>
-                            <a th:href="@{/}">
+                            <a sec:authorize="hasRole('USER')" th:href="@{/}">
                                 <button class="cart_ind">В корзину</button>
                             </a>
                         </div>
@@ -46,10 +49,13 @@
                         <div class="col text-center items" th:each="tv: ${tvs}">
                             <a th:href="@{'item/' + ${tv.id}}">
                                 <div class="title">[[${tv.name}]]</div>
-                                <img th:src="@{'/img/' + ${tv.img}}" alt="pic" style="width: auto">
+                                <img th:if="${!tv.imgData.equals('')}"
+                                     th:src="@{'data:image/jpeg;base64,' + ${tv.imgData}}" alt="pic" style="width: auto">
+                                <img th:if="${tv.imgData.equals('')}" class="img_ind"
+                                     th:src="@{/img/no-image.jpg}" alt="pic">
                             </a>
                             <span class="price">[[${tv.price}]] ₽</span>
-                            <a th:href="@{/}">
+                            <a sec:authorize="hasRole('USER')" th:href="@{/}">
                                 <button class="cart_ind">В корзину</button>
                             </a>
                         </div>
@@ -63,10 +69,13 @@
                         <div class="col text-center items" th:each="laptop: ${laptops}">
                             <a th:href="@{'item/' + ${laptop.id}}">
                                 <div class="title">[[${laptop.name}]]</div>
-                                <img th:src="@{'/img/' + ${laptop.img}}" alt="pic">
+                                <img th:if="${!laptop.imgData.equals('')}"
+                                     th:src="@{'data:image/jpeg;base64,' + ${laptop.imgData}}" alt="pic">
+                                <img th:if="${laptop.imgData.equals('')}" class="img_ind"
+                                     th:src="@{/img/no-image.jpg}" alt="pic">
                             </a>
                             <span class="price">[[${laptop.price}]] ₽</span>
-                            <a th:href="@{/}">
+                            <a sec:authorize="hasRole('USER')" th:href="@{/}">
                                 <button class="cart_ind">В корзину</button>
                             </a>
                         </div>

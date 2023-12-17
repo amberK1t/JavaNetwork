@@ -12,35 +12,26 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "login_f", nullable = false)
-    private String login;
-
-    @Column(name = "password_f", nullable = false)
-    private String password;
-
-    @Column(name = "role_f")
-    private String role;
-
     @Column(name = "name_f")
     private String name;
 
     @OneToMany(mappedBy = "client")
     private Set<Order> orderSet;
 
+    @OneToOne(mappedBy = "client")
+    private User user;
+
     public Client() {
         this.id = 0;
-        this.login = "";
-        this.password = "";
-        this.role = "USER";
         this.name = "";
     }
 
-    public String getRole() {
-        return role;
+    public User getUser() {
+        return user;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Integer getId() {
@@ -49,22 +40,6 @@ public class Client {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getName() {
@@ -79,8 +54,6 @@ public class Client {
     public String toString() {
         return "Client{" +
                 "id=" + id +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 '}';
     }

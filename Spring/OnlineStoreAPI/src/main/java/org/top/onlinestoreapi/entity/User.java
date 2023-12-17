@@ -18,6 +18,10 @@ public class User {
     @Column(name = "role_f", nullable = false)
     private String role;
 
+    @OneToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
+
     public User() {
         this.id = 0;
         this.login = "";
