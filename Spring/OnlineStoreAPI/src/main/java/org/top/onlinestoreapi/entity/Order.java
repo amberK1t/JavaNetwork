@@ -2,6 +2,7 @@ package org.top.onlinestoreapi.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -15,17 +16,24 @@ public class Order {
     @Column(name = "desc_f")
     private String description;
 
+    @Column(name = "date_closed")
+    private Date dateClosed;
+
+    @Column(name = "closed", nullable = false)
+    private Boolean closed;
+
     @ManyToOne
-    @JoinColumn(name = "client_id")
+    @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
     @OneToMany(mappedBy = "order")
     private Set<Position> positionSet;
 
     public Order() {
-        this.id = 0;
-        this.description = "";
-        this.client = null;
+        id = 0;
+        description = "";
+        dateClosed = null;
+        closed = false;
     }
 
     public Integer getId() {
@@ -58,6 +66,22 @@ public class Order {
 
     public void setPositionSet(Set<Position> positionSet) {
         this.positionSet = positionSet;
+    }
+
+    public Date getDateClosed() {
+        return dateClosed;
+    }
+
+    public void setDateClosed(Date dateClosed) {
+        this.dateClosed = dateClosed;
+    }
+
+    public Boolean getClosed() {
+        return closed;
+    }
+
+    public void setClosed(Boolean closed) {
+        this.closed = closed;
     }
 
     @Override

@@ -2,10 +2,8 @@ package org.top.onlinestoreapi.rdb.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import org.top.onlinestoreapi.entity.Order;
-
-import java.util.Optional;
+import org.top.onlinestoreapi.entity.Position;
 
 @Repository
-public interface OrderRepository extends CrudRepository<Order, Integer> {
+public interface PositionRepository extends CrudRepository<Position, Integer> {
 }

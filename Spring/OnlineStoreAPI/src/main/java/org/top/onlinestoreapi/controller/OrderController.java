@@ -7,17 +7,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.top.onlinestoreapi.entity.Client;
+import org.top.onlinestoreapi.entity.Item;
 import org.top.onlinestoreapi.entity.Order;
+import org.top.onlinestoreapi.service.ClientService;
+import org.top.onlinestoreapi.service.ItemService;
 import org.top.onlinestoreapi.service.OrderService;
 
+import java.security.Principal;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("order")
 public class OrderController {
     private final OrderService orderService;
-    public OrderController(OrderService orderService) {
+    private final ClientService clientService;
+    private ItemService itemService;
+    public OrderController(OrderService orderService, ClientService clientService, ItemService itemService) {
         this.orderService = orderService;
+        this.clientService = clientService;
+        this.itemService = itemService;
     }
 
     @GetMapping("")
@@ -107,5 +116,36 @@ public class OrderController {
             );
         }
         return "redirect:/order";
+    }
+
+    @GetMapping("buy/{itemId}")
+    public String buy(@PathVariable Integer itemId, Principal principal, RedirectAttributes ra) {
+        Optional<Client> client = clientService.findClientByUserLogin(principal.getName());
+        if (client.isPresent()) {
+            orderService.buyItem(itemId, client.get().getId());
+            Optional<Item> item = itemService.getById(itemId);
+            if (item.isPresent()) {
+                String type = item.get().getType();
+                switch (type) {
+                    case "smartphone":
+                        return "redirect:/item/smartphone";
+                    case "tv":
+                        return "redirect:/item/tv";
+                    case "laptop":
+                        return "redirect:/item/laptop";
+                }
+            } else {
+                ra.addFlashAttribute(
+                        "dangerMessage",
+                        "Item не найден"
+                );
+            }
+        } else {
+            ra.addFlashAttribute(
+                    "dangerMessage",
+                    "Ошибка покупки, пользователь не найден"
+            );
+        }
+        return "redirect:/item";
     }
 }

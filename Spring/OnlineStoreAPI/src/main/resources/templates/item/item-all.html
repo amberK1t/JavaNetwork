@@ -50,7 +50,9 @@
                                     <div><h3>Цена: [[${item.price}]] ₽</h3></div>
                                 </div>
                                 <div>
-                                    <a sec:authorize="hasRole('USER')" th:href="@{/}"><button class="cart_all">В корзину</button></a>
+                                    <a sec:authorize="hasRole('USER')" th:href="@{'/order/buy/' + ${item.id}}">
+                                        <button class="cart_all">В корзину</button>
+                                    </a>
                                 </div>
 
                             </td>

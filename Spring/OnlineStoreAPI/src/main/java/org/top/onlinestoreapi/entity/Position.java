@@ -14,16 +14,16 @@ public class Position {
     private Integer quantity;
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
     @ManyToOne
-    @JoinColumn(name = "item_id")
+    @JoinColumn(name = "item_id", nullable = false)
     private Item item;
 
     public Position() {
-        this.id = 0;
-        this.quantity = 0;
+        id = 0;
+        quantity = 0;
     }
 
     public Integer getId() {
@@ -57,6 +57,8 @@ public class Position {
     public void setItem(Item item) {
         this.item = item;
     }
+
+
 
     @Override
     public String toString() {

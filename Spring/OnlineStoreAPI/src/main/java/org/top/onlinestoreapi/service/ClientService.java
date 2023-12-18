@@ -12,4 +12,6 @@ public interface ClientService {
     Optional<Client> update(Client client);
     Optional<Client> deleteById(Integer id);
 
+    Optional<Client> findClientByUserLogin(String userLogin);
+
 }

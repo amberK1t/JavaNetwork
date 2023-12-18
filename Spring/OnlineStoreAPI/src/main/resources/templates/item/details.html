@@ -34,7 +34,7 @@
                             <div>Год выпуска: [[${item.releaseYear}]]</div>
                             <div>Диагональ: [[${item.diagonal}]]</div>
                             <div><h3>Цена: [[${item.price}]] ₽</h3></div>
-                            <a sec:authorize="hasRole('USER')" th:href="@{/}"><button class="cart">В корзину</button></a>
+                            <a sec:authorize="hasRole('USER')" th:href="@{'/order/buy/' + ${item.id}}"><button class="cart">В корзину</button></a>
                         </td>
                     </tr>
                     </tbody>

@@ -50,6 +50,14 @@ public class Client {
         this.name = name;
     }
 
+    public Set<Order> getOrderSet() {
+        return orderSet;
+    }
+
+    public void setOrderSet(Set<Order> orderSet) {
+        this.orderSet = orderSet;
+    }
+
     @Override
     public String toString() {
         return "Client{" +

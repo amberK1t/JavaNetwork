@@ -35,7 +35,7 @@
                                      th:src="@{/img/no-image.jpg}" alt="pic">
                             </a>
                             <span class="price">[[${smartphone.price}]] ₽</span>
-                            <a sec:authorize="hasRole('USER')" th:href="@{/}">
+                            <a sec:authorize="hasRole('USER')" th:href="@{'/order/buy/' + ${smartphone.id}}">
                                 <button class="cart_ind">В корзину</button>
                             </a>
                         </div>
@@ -55,7 +55,7 @@
                                      th:src="@{/img/no-image.jpg}" alt="pic">
                             </a>
                             <span class="price">[[${tv.price}]] ₽</span>
-                            <a sec:authorize="hasRole('USER')" th:href="@{/}">
+                            <a sec:authorize="hasRole('USER')" th:href="@{'/order/buy/' + ${tv.id}}">
                                 <button class="cart_ind">В корзину</button>
                             </a>
                         </div>
@@ -75,7 +75,7 @@
                                      th:src="@{/img/no-image.jpg}" alt="pic">
                             </a>
                             <span class="price">[[${laptop.price}]] ₽</span>
-                            <a sec:authorize="hasRole('USER')" th:href="@{/}">
+                            <a sec:authorize="hasRole('USER')" th:href="@{'/order/buy/' + ${laptop.id}}">
                                 <button class="cart_ind">В корзину</button>
                             </a>
                         </div>

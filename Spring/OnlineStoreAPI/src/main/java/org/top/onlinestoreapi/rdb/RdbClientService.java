@@ -44,4 +44,9 @@ public class RdbClientService implements ClientService {
         }
         return find;
     }
+
+    @Override
+    public Optional<Client> findClientByUserLogin(String userLogin) {
+        return clientRepository.findClientByUserLogin(userLogin);
+    }
 }

@@ -37,7 +37,7 @@ public class Item {
     @Column(name = "price_f")
     private Integer price;
 
-    @OneToMany
+    @OneToMany(mappedBy = "item")
     private Set<Position> positionSet;
 
     public Item() {

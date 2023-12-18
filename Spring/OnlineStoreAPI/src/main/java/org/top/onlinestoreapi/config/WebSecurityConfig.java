@@ -47,6 +47,11 @@ public class WebSecurityConfig {
                         ).permitAll()
 
                         .requestMatchers(
+                                "/order/buy/**"
+                        )
+                        .hasRole("USER")
+
+                        .requestMatchers(
                                 "/client/**",
                                 "/order/**",
                                 "/position/**",

@@ -61,6 +61,14 @@ public class User {
         this.role = role;
     }
 
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
     @Override
     public String toString() {
         return "User{" +
