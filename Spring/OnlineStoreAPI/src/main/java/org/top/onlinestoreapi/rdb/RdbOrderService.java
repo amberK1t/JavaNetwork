@@ -12,8 +12,7 @@ import org.top.onlinestoreapi.service.ClientService;
 import org.top.onlinestoreapi.service.ItemService;
 import org.top.onlinestoreapi.service.OrderService;
 
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class RdbOrderService implements OrderService {
@@ -117,5 +116,29 @@ public class RdbOrderService implements OrderService {
             }
         }
         return Optional.empty();
+    }
+
+    @Override
+    public Iterable<Order> findAllClosedOrders(Integer clientId) {
+        Iterable<Order> orders = orderRepository.findAll();
+        List<Order> result = new ArrayList<>();
+        for (Order order : orders) {
+            if (Objects.equals(order.getClient().getId(), clientId) && order.getClosed()) {
+                result.add(order);
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public boolean closedOrder(Integer orderId) {
+        Optional<Order> order = orderRepository.findById(orderId);
+        if (order.isEmpty() || order.get().getClosed()) {
+            return false;
+        }
+        order.get().setClosed(true);
+        order.get().setDateClosed(new Date());
+        orderRepository.save(order.get());
+        return true;
     }
 }

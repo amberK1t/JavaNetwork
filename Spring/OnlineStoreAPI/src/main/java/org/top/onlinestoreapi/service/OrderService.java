@@ -14,8 +14,8 @@ public interface OrderService {
     Optional<Order> deleteById(Integer id);
 
     boolean buyItem(Integer itemId, Integer clientId);
-
     Optional<Order> findNotClosedOrder(Integer clientId);
-
     Optional<Position> findPositionByOrderIdAndItemId(Integer orderId, Integer itemId);
+    Iterable<Order> findAllClosedOrders(Integer clientId);
+    boolean closedOrder(Integer orderId);
 }

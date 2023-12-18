@@ -47,7 +47,8 @@ public class WebSecurityConfig {
                         ).permitAll()
 
                         .requestMatchers(
-                                "/order/buy/**"
+                                "/order/buy/**",
+                                "/order/**"
                         )
                         .hasRole("USER")
 
@@ -63,7 +64,7 @@ public class WebSecurityConfig {
                         .hasRole("ADMIN")
 
                         .anyRequest().authenticated())
-                .formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/").permitAll())
+                .formLogin(form -> form.loginPage("/login").permitAll())
                 .logout(customizer -> customizer.logoutSuccessUrl("/login"));
         return http.build();
     }

@@ -173,3 +173,18 @@ a {
     padding-right: 3vh;
     color: white;
 }
+
+.tb-order {
+    padding-top: 5vh;
+    border-radius: 5vh;
+}
+
+.table-head {
+    background-color: #ccd5f5;
+}
+
+.cart-ico {
+    margin-left: 2vh;
+    width: 4vh;
+
+}

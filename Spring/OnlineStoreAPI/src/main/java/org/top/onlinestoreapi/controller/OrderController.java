@@ -10,6 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.top.onlinestoreapi.entity.Client;
 import org.top.onlinestoreapi.entity.Item;
 import org.top.onlinestoreapi.entity.Order;
+import org.top.onlinestoreapi.entity.Position;
 import org.top.onlinestoreapi.service.ClientService;
 import org.top.onlinestoreapi.service.ItemService;
 import org.top.onlinestoreapi.service.OrderService;
@@ -22,7 +23,7 @@ import java.util.Optional;
 public class OrderController {
     private final OrderService orderService;
     private final ClientService clientService;
-    private ItemService itemService;
+    private final ItemService itemService;
     public OrderController(OrderService orderService, ClientService clientService, ItemService itemService) {
         this.orderService = orderService;
         this.clientService = clientService;
@@ -30,9 +31,27 @@ public class OrderController {
     }
 
     @GetMapping("")
-    public String getAll(Model model) {
-        Iterable<Order> orders = orderService.getAll();
-        model.addAttribute("orders", orders);
+    public String getAll(Model model, Principal principal, RedirectAttributes ra) {
+        Optional<Client> client = clientService.findClientByUserLogin(principal.getName());
+        if (client.isEmpty()) {
+            ra.addFlashAttribute(
+                    "dangerMessage",
+                    "Ошибка покупки, пользователь не найден"
+            );
+        } else {
+            Iterable<Order> closedOrders = orderService.findAllClosedOrders(client.get().getId());
+            Optional<Order> notClosedOrder = orderService.findNotClosedOrder(client.get().getId());
+            if (notClosedOrder.isPresent()) {
+                double total = 0.0;
+                for (Position position: notClosedOrder.get().getPositionSet()) {
+                    total += position.getItem().getPrice() * position.getQuantity();
+                }
+                model.addAttribute("total", total);
+            }
+
+            model.addAttribute("closedOrders", closedOrders);
+            model.addAttribute("notClosedOrders", notClosedOrder.orElse(null));
+        }
         return "order/order-all";
     }
 
@@ -147,5 +166,18 @@ public class OrderController {
             );
         }
         return "redirect:/item";
+    }
+
+    @GetMapping("complete/{orderId}")
+    public String complete(@PathVariable Integer orderId, RedirectAttributes ra) {
+        try {
+            orderService.closedOrder(orderId);
+        } catch (Exception e) {
+            ra.addFlashAttribute(
+                    "dangerMessage",
+                    "Ошибка подтверждения заказа " + e.getMessage()
+            );
+        }
+        return "redirect:/order";
     }
 }
