@@ -170,14 +170,43 @@ public class OrderController {
 
     @GetMapping("complete/{orderId}")
     public String complete(@PathVariable Integer orderId, RedirectAttributes ra) {
-        try {
-            orderService.closedOrder(orderId);
-        } catch (Exception e) {
+        if (orderService.closedOrder(orderId)) {
+
+        } else {
             ra.addFlashAttribute(
                     "dangerMessage",
-                    "Ошибка подтверждения заказа " + e.getMessage()
+                    "Ошибка подтверждения заказа"
             );
         }
         return "redirect:/order";
     }
+
+    @GetMapping("add-item/{positionId}")
+    public String addItem(@PathVariable Integer positionId, RedirectAttributes ra) {
+        if (orderService.addItem(positionId)) {
+
+        } else {
+            ra.addFlashAttribute(
+                    "dangerMessage",
+                    "Ошибка уменьшения количества"
+            );
+        }
+
+        return "redirect:/order";
+    }
+
+    @GetMapping("remove-item/{positionId}")
+    public String removeItem(@PathVariable Integer positionId, RedirectAttributes ra) {
+        if (orderService.removeItem(positionId)) {
+
+        } else {
+            ra.addFlashAttribute(
+                    "dangerMessage",
+                    "Ошибка уменьшения количества"
+            );
+        }
+
+        return "redirect:/order";
+    }
+
 }

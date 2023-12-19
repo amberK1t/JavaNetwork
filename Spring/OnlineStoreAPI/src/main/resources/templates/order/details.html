@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>[[${client.name}]]</title>
+    <title>Заказ</title>
     <th:block th:replace="layout/page-layout.html :: page-head"/>
 </head>
 <body>
@@ -12,24 +12,28 @@
         <div class="row">
             <th:block th:replace="layout/page-layout.html :: page-nav"/>
             <div class="col-sm-10 text-capitalize content">
-                <table class="table">
+                <table class="table table-bordered t-order text-center">
                     <tbody>
                     <tr class="text-center">
+                        <td></td>
                         <td>
-                            <h2>[[${client.name}]]</h2>
+                            <h4>[[${order.client.name}]]</h4>
                         </td>
                         <td></td>
-
+                        <td th:if="${order.closed} == true">
+                            <h4>Завершен</h4>
+                        </td>
                     </tr>
-                    <tr>
-                        <td class="col-sm-5 text-center">
-
+                    <tr th:each="position: ${order.positionSet}">
+                        <td>
+                            <a th:href="@{'/item/' + ${position.item.id}}">
+                                <img class="cart-img" th:if="${!position.item.imgData.equals('')}"
+                                     th:src="@{'data:image/jpeg;base64,' + ${position.item.imgData}}" alt="pic">
+                            </a>
                         </td>
-                        <td class="col-sm-5 text-end stats">
-                            <div>Логин: [[${client.login}]]</div>
-                            <div>Имя: [[${client.name}]]</div>
-                            <div>Роль: [[${client.role}]]</div>
-                        </td>
+                        <td><a th:href="@{'/item/' + ${position.item.id}}">[[${position.item.name}]]</a></td>
+                        <td>[[${position.quantity}]]</td>
+                        <td>[[${position.item.price}]]</td>
                     </tr>
                     </tbody>
                 </table>

@@ -22,8 +22,10 @@
                     <p class="alert alert-danger" th:if="${dangerMessage != null}">
                         [[${dangerMessage}]]
                     </p>
+                    <div class="t-order">
+                        <h2>Текущий заказ</h2>
+                    </div>
 
-                    <h2>Текущий заказ</h2>
 
                     <table class="table table-bordered" th:if="${notClosedOrders == null}">
                         <tr>
@@ -34,10 +36,11 @@
                     </table>
 
                     <div th:if="${notClosedOrders != null}">
-                        <table class="table table-bordered tb-order">
+                        <table class="table table-bordered text-center">
 
                             <thead class="table-head">
                             <tr>
+                                <th></th>
                                 <th>Товар</th>
                                 <th>Количество</th>
                                 <th>Цена</th>
@@ -47,16 +50,27 @@
 
                             <tbody>
                             <tr th:each="position: ${notClosedOrders.positionSet}">
-                                <th>[[${position.item.name}]]</th>
-                                <th>[[${position.quantity}]]</th>
-                                <th>[[${position.item.price}]]</th>
-                                <th>Add/delete</th>
+                                <td>
+                                    <a th:href="@{'/item/' + ${position.item.id}}">
+                                        <img class="cart-img" th:if="${!position.item.imgData.equals('')}"
+                                             th:src="@{'data:image/jpeg;base64,' + ${position.item.imgData}}" alt="pic">
+                                    </a>
+                                </td>
+                                <td><a th:href="@{'/item/' + ${position.item.id}}">[[${position.item.name}]]</a></td>
+                                <td>[[${position.quantity}]]</td>
+                                <td>[[${position.item.price}]]</td>
+                                <td>
+                                    <a th:href="@{'/order/add-item/' + ${position.id}}" class="btn btn-outline-success">+</a>
+                                    <a th:href="@{'/order/remove-item/' + ${position.id}}"
+                                       class="btn btn-outline-danger">-</a>
+                                </td>
                             </tr>
                             </tbody>
                             <tfoot>
                             <tr>
                                 <td></td>
-                                <th>Итого: </th>
+                                <td></td>
+                                <th>Итого:</th>
                                 <th>[[${total}]] ₽</th>
                                 <td>
                                     <a class="btn btn-outline-success"
@@ -68,9 +82,11 @@
                         </table>
                     </div>
 
+                    <div class="t-order">
+                        <h2>История покупок</h2>
+                    </div>
 
-                    <h2>Выполненные заказы</h2>
-                    <table class="table table-bordered tb-order">
+                    <table class="table table-bordered text-center">
                         <thead class="table-head">
                         <tr>
                             <th>ID</th>
@@ -84,7 +100,7 @@
                             <td>[[${order.id}]]</td>
                             <td>[[${order.dateClosed}]]</td>
                             <td>
-                                details
+                                <a th:href="@{'/order/' + ${order.id}}" class="btn btn-outline-primary">Подробнее</a>
                             </td>
                         </tr>
                         </tbody>

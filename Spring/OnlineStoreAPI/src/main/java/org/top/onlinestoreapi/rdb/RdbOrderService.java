@@ -1,6 +1,5 @@
 package org.top.onlinestoreapi.rdb;
 
-import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
 import org.top.onlinestoreapi.entity.Client;
 import org.top.onlinestoreapi.entity.Item;
@@ -13,6 +12,7 @@ import org.top.onlinestoreapi.service.ItemService;
 import org.top.onlinestoreapi.service.OrderService;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class RdbOrderService implements OrderService {
@@ -101,6 +101,8 @@ public class RdbOrderService implements OrderService {
         Iterable<Order> orders = orderRepository.findAll();
         for (Order order: orders) {
             if (Objects.equals(order.getClient().getId(), clientId) && !order.getClosed()) {
+                Set<Position> positionSet = order.getPositionSet();
+                order.setPositionSet(positionSet.stream().sorted(Comparator.comparing(op -> op.getItem().getName())).collect(Collectors.toCollection(LinkedHashSet::new)));
                 return Optional.of(order);
             }
         }
@@ -141,4 +143,31 @@ public class RdbOrderService implements OrderService {
         orderRepository.save(order.get());
         return true;
     }
+
+    @Override
+    public boolean removeItem(Integer positionId) {
+        Optional<Position> position = positionRepository.findById(positionId);
+        if (position.isPresent()) {
+            position.get().setQuantity(position.get().getQuantity() - 1);
+            if (position.get().getQuantity() == 0) {
+                positionRepository.deleteById(positionId);
+            } else {
+                positionRepository.save(position.get());
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean addItem(Integer positionId) {
+        Optional<Position> position = positionRepository.findById(positionId);
+        if (position.isPresent()) {
+            position.get().setQuantity(position.get().getQuantity() + 1);
+            positionRepository.save(position.get());
+            return true;
+        }
+        return false;
+    }
+
 }

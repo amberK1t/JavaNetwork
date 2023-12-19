@@ -186,5 +186,12 @@ a {
 .cart-ico {
     margin-left: 2vh;
     width: 4vh;
+}
 
+.cart-img {
+    width: 5vh;
+}
+
+.t-order {
+    padding-top: 5vh;
 }
