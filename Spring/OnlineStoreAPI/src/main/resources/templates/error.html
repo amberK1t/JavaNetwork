@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Error page</title>
+    <th:block th:replace="layout/page-layout.html :: page-head"/>
+</head>
+<body>
+
+<p class="alert alert-success" th:if="${successMessage != null}">
+    [[${successMessage}]]
+</p>
+
+<p class="alert alert-danger" th:if="${dangerMessage != null}">
+    [[${dangerMessage}]]
+</p>
+
+<div class="container-fluid text-center">
+    <div class="container text-center main-div">
+
+        <th:block th:replace="layout/page-layout.html :: page-logo"/>
+        <div class="row">
+            <th:block th:replace="layout/page-layout.html :: page-nav"/>
+
+            <div class="col-sm-10 text-start content">
+                <div class="error">
+                    <h1>Something wrong</h1>
+                    <h3>[[${status}]]</h3>
+                    <h3>[[${message}]]</h3>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -42,8 +42,8 @@ public class WebSecurityConfig {
                                 "img/**",
                                 "/item/laptop",
                                 "/item/tv",
-                                "/item/smartphone",
-                                "/item/*"
+                                "/item/smartphone"
+//                                "/item/*"
                         ).permitAll()
 
                         .requestMatchers(

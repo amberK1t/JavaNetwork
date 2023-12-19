@@ -195,3 +195,12 @@ a {
 .t-order {
     padding-top: 5vh;
 }
+
+.error {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10vh;
+}
