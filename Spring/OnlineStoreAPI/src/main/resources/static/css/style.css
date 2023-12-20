@@ -204,3 +204,17 @@ a {
     align-items: center;
     padding-top: 10vh;
 }
+
+.feedback {
+    background-color: #ccd5f5;
+    padding: 2vh;
+    margin-top: 5vh;
+    border: #7da1e8 1px solid;
+    border-radius: 2vh;
+}
+
+.feedback-head {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 2vh;
+}

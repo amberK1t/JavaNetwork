@@ -5,10 +5,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.top.onlinestoreapi.entity.Client;
+import org.top.onlinestoreapi.entity.Feedback;
 import org.top.onlinestoreapi.entity.Item;
+import org.top.onlinestoreapi.service.ClientService;
 import org.top.onlinestoreapi.service.ItemService;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.Base64;
 import java.util.Optional;
 
@@ -17,13 +21,15 @@ import java.util.Optional;
 public class ItemController {
 
     private final ItemService itemService;
+    private final ClientService clientService;
 
-    public ItemController(ItemService smartphoneService) {
+    public ItemController(ItemService smartphoneService, ClientService clientService) {
         this.itemService = smartphoneService;
+        this.clientService = clientService;
     }
 
     @GetMapping("")
-    public String getAll(Model model) {//
+    public String getAll(Model model) {
         Iterable<Item> items = itemService.getAll();
         model.addAttribute("items", items);
         return "item/item-all";
@@ -135,10 +141,16 @@ public class ItemController {
     }
 
     @GetMapping("{id}")
-    public String details(@PathVariable Integer id, Model model, RedirectAttributes redirectAttributes) {
+    public String details(@PathVariable Integer id, Model model, RedirectAttributes redirectAttributes, Principal principal) {
+        Optional<Client> client = clientService.findClientByUserLogin(principal.getName());
+        Feedback feedback = new Feedback();
         Optional<Item> find = itemService.getById(id);
-        if (find.isPresent()) {
+        if (find.isPresent() && client.isPresent()) {
+            feedback.setItem(find.get());
+            feedback.setClient(client.get());
+            model.addAttribute("client", client);
             model.addAttribute("item", find.get());
+            model.addAttribute("feedback", feedback);
             return "item/details";
         } else {
             redirectAttributes.addFlashAttribute(

@@ -21,6 +21,9 @@ public class Client {
     @OneToOne(mappedBy = "client")
     private User user;
 
+    @OneToMany(mappedBy = "client")
+    private Set<Feedback> feedbackSet;
+
     public Client() {
         this.id = 0;
         this.name = "";
@@ -52,6 +55,14 @@ public class Client {
 
     public Set<Order> getOrderSet() {
         return orderSet;
+    }
+
+    public Set<Feedback> getFeedbackSet() {
+        return feedbackSet;
+    }
+
+    public void setFeedbackSet(Set<Feedback> feedbackSet) {
+        this.feedbackSet = feedbackSet;
     }
 
     public void setOrderSet(Set<Order> orderSet) {

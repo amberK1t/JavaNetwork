@@ -40,6 +40,9 @@ public class Item {
     @OneToMany(mappedBy = "item")
     private Set<Position> positionSet;
 
+    @OneToMany(mappedBy = "item")
+    private Set<Feedback> feedbackSet;
+
     public Item() {
         this.id = 0;
         this.name = "";
@@ -50,6 +53,14 @@ public class Item {
         this.type = "";
         this.imgData = null;
         this.price = 0;
+    }
+
+    public Set<Feedback> getFeedbackSet() {
+        return feedbackSet;
+    }
+
+    public void setFeedbackSet(Set<Feedback> feedbackSet) {
+        this.feedbackSet = feedbackSet;
     }
 
     public String getType() {

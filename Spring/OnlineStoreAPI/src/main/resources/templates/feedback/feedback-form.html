@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление</title>
+    <th:block th:replace="layout/page-layout.html :: page-head"/>
+</head>
+<body>
+<div class="container-fluid text-center">
+    <div class="container text-center main-div">
+        <th:block th:replace="layout/page-layout.html :: page-logo"/>
+        <div class="row">
+            <th:block th:replace="layout/page-layout.html :: page-nav"/>
+            <div class="col-sm-10 text-start content">
+                <div class="container-fluid text-center">
+                    <h1>Добавить отзыв</h1>
+                    <form class="form-control" th:action="@{/feedback/addFeedback}" method="post" th:object="${feedback}">
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label" for="rate">Оценка: </label>
+                            <div class="col-sm-8">
+                                <input class="form-control" id="rate" type="number" min="0" max="10" th:field="*{rate}"
+                                       required/>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label" for="comment">Комментарий: </label>
+                            <div class="col-sm-8">
+                                <input class="form-control" id="comment" type="text" maxlength="300"
+                                       th:field="*{comment}"/>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-4">
+                                <button class="btn btn-success form-control">Отправить</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -34,13 +34,66 @@
                             <div>Год выпуска: [[${item.releaseYear}]]</div>
                             <div>Диагональ: [[${item.diagonal}]]</div>
                             <div><h3>Цена: [[${item.price}]] ₽</h3></div>
-                            <a sec:authorize="hasRole('USER')" th:href="@{'/order/buy/' + ${item.id}}"><button class="cart">В корзину</button></a>
+                            <a sec:authorize="hasRole('USER')" th:href="@{'/order/buy/' + ${item.id}}">
+                                <button class="cart">В корзину</button>
+                            </a>
                         </td>
                     </tr>
                     </tbody>
                 </table>
                 <div class="more-info">
-                    Задача организации, в особенности же укрепление и развитие структуры обеспечивает широкому кругу (специалистов) участие в формировании новых предложений. Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа систем массового участия. Значимость этих проблем настолько очевидна, что сложившаяся структура организации представляет собой интересный эксперимент проверки форм развития. Задача организации, в особенности же постоянный количественный рост и сфера нашей активности играет важную роль в формировании новых предложений. Значимость этих проблем настолько очевидна, что начало повседневной работы по формированию позиции обеспечивает широкому кругу (специалистов) участие в формировании системы обучения кадров, соответствует насущным потребностям. Задача организации, в особенности же укрепление и развитие структуры обеспечивает широкому кругу (специалистов) участие в формировании новых предложений. Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа систем массового участия. Значимость этих проблем настолько очевидна, что сложившаяся структура организации представляет собой интересный эксперимент проверки форм развития. Задача организации, в особенности же укрепление и развитие структуры обеспечивает широкому кругу (специалистов) участие в формировании новых предложений. Разнообразный и богатый опыт реализация намеченных плановых заданий требуют от нас анализа систем массового участия. Значимость этих проблем настолько очевидна, что сложившаяся структура организации представляет собой интересный эксперимент проверки форм развития. Задача организации, в особенности же постоянный количественный рост и сфера нашей активности играет важную роль в формировании новых предложений. Значимость этих проблем настолько очевидна, что начало повседневной работы по формированию позиции обеспечивает широкому кругу (специалистов) участие в формировании системы обучения кадров, соответствует насущным потребностям.
+
+                    <form class="form-control" th:action="@{/feedback/new}" method="post" th:object="${feedback}">
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label" for="rate">Оценка: </label>
+                            <div class="col-sm-8">
+                                <input class="form-control" id="rate" type="number" min="0" max="10" th:field="*{rate}"
+                                       required/>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label class="col-sm-2 col-form-label" for="comment">Комментарий: </label>
+                            <div class="col-sm-8">
+                                <input class="form-control" id="comment" type="text" maxlength="300"
+                                       th:field="*{comment}"/>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row" hidden="hidden">
+                            <label class="col-sm-2 col-form-label" for="item">item: </label>
+                            <div class="col-sm-8">
+                                <input class="form-control" id="item" th:field="*{item}"/>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row" hidden="hidden">
+                            <label class="col-sm-2 col-form-label" for="client">client: </label>
+                            <div class="col-sm-8">
+                                <input class="form-control" id="client" th:field="*{client}"/>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-4">
+                                <button class="btn btn-outline-success form-control">Отправить</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <h2>Отзывы: </h2>
+                    <div class="feedback" th:each="feedback: ${item.feedbackSet}">
+                        <div class="feedback-head">
+                            <span>[[${feedback.rate}]] <span class="text-warning">&#9733;</span></span>
+                            <span>[[${feedback.client.name}]]</span>
+                            <span>[[${feedback.writtenDate}]]</span>
+                        </div>
+                        <div>
+                            [[${feedback.comment}]]
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
