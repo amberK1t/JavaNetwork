@@ -41,6 +41,10 @@ public class RdbFeedbackService implements FeedbackService {
 
     @Override
     public Optional<Feedback> deleteById(Integer id) {
-        return Optional.empty();
+        Optional<Feedback> deleted = feedbackRepository.findById(id);
+        if (deleted.isPresent()) {
+            feedbackRepository.deleteById(id);
+        }
+        return deleted;
     }
 }

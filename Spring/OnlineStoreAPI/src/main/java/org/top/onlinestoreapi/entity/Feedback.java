@@ -2,6 +2,8 @@ package org.top.onlinestoreapi.entity;
 
 import jakarta.persistence.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -81,5 +83,10 @@ public class Feedback {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public String dateFormat() {
+        DateFormat formatter = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+        return formatter.format(writtenDate);
     }
 }

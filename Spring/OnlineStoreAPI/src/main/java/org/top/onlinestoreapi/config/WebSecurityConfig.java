@@ -43,12 +43,15 @@ public class WebSecurityConfig {
                                 "/item/laptop",
                                 "/item/tv",
                                 "/item/smartphone"
-//                                "/item/*"
                         ).permitAll()
 
                         .requestMatchers(
                                 "/order/buy/**",
-                                "/order/**"
+                                "/order/*",
+                                "/order",
+                                "/order/complete/**",
+                                "/order/add-item/**",
+                                "/order/remove-item/**"
                         )
                         .hasRole("USER")
 

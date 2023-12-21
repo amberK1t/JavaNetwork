@@ -14,6 +14,8 @@ import org.top.onlinestoreapi.service.ItemService;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.Base64;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -144,13 +146,18 @@ public class ItemController {
     public String details(@PathVariable Integer id, Model model, RedirectAttributes redirectAttributes, Principal principal) {
         Optional<Client> client = clientService.findClientByUserLogin(principal.getName());
         Feedback feedback = new Feedback();
-        Optional<Item> find = itemService.getById(id);
-        if (find.isPresent() && client.isPresent()) {
-            feedback.setItem(find.get());
+        Optional<Item> item = itemService.getById(id);
+        if (item.isPresent() && client.isPresent()) {
+            feedback.setItem(item.get());
             feedback.setClient(client.get());
-            model.addAttribute("client", client);
-            model.addAttribute("item", find.get());
+            List<Feedback> feedbacks = item.get().getFeedbackSet()
+                    .stream()
+                    .sorted(Comparator.comparing(Feedback::getWrittenDate).reversed())
+                    .toList();
+//            model.addAttribute("client", client);
+            model.addAttribute("item", item.get());
             model.addAttribute("feedback", feedback);
+            model.addAttribute("feedbacks", feedbacks);
             return "item/details";
         } else {
             redirectAttributes.addFlashAttribute(

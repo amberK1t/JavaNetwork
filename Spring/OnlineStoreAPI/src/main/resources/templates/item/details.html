@@ -12,38 +12,40 @@
         <div class="row">
             <th:block th:replace="layout/page-layout.html :: page-nav"/>
             <div class="col-sm-10 text-capitalize content">
-                <table class="table">
-                    <tbody>
-                    <tr class="text-center">
-                        <td>
-                            <h2>[[${item.name}]]</h2>
-                        </td>
-                        <td></td>
 
-                    </tr>
-                    <tr>
-                        <td th:if="${!item.imgData.equals('')}" class="col-sm-5 text-center">
-                            <img class="img-details" th:src="@{'data:image/jpeg;base64,' + ${item.imgData}}" alt="pic">
-                        </td>
-                        <td th:if="${item.imgData.equals('')}">
-                            <img class="img-details" th:src="@{/img/no-image.jpg}" alt="pic">
-                        </td>
-                        <td class="col-sm-5 text-end stats">
-                            <div>Страна-производитель: [[${item.countryOfOrigin}]]</div>
-                            <div>Гарантия: [[${item.guarantee}]]</div>
-                            <div>Год выпуска: [[${item.releaseYear}]]</div>
-                            <div>Диагональ: [[${item.diagonal}]]</div>
-                            <div><h3>Цена: [[${item.price}]] ₽</h3></div>
-                            <a sec:authorize="hasRole('USER')" th:href="@{'/order/buy/' + ${item.id}}">
-                                <button class="cart">В корзину</button>
-                            </a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                    <table class="table">
+                        <tbody>
+                        <tr class="text-center">
+                            <td>
+                                <h2>[[${item.name}]]</h2>
+                            </td>
+                            <td></td>
+
+                        </tr>
+                        <tr>
+                            <td th:if="${!item.imgData.equals('')}" class="col-sm-5 text-center">
+                                <img class="img-details" th:src="@{'data:image/jpeg;base64,' + ${item.imgData}}" alt="pic">
+                            </td>
+                            <td th:if="${item.imgData.equals('')}">
+                                <img class="img-details" th:src="@{/img/no-image.jpg}" alt="pic">
+                            </td>
+                            <td class="col-sm-5 text-end stats">
+                                <div>Страна-производитель: [[${item.countryOfOrigin}]]</div>
+                                <div>Гарантия: [[${item.guarantee}]]</div>
+                                <div>Год выпуска: [[${item.releaseYear}]]</div>
+                                <div>Диагональ: [[${item.diagonal}]]</div>
+                                <div><h3>Цена: [[${item.price}]] ₽</h3></div>
+                                <a sec:authorize="hasRole('USER')" th:href="@{'/order/buy/' + ${item.id}}">
+                                    <button class="cart">В корзину</button>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
                 <div class="more-info">
 
-                    <form class="form-control" th:action="@{/feedback/new}" method="post" th:object="${feedback}">
+                    <form sec:authorize="hasRole('USER')" class="form-control" th:action="@{/feedback/new}" method="post" th:object="${feedback}">
                         <div class="mb-3 row">
                             <label class="col-sm-2 col-form-label" for="rate">Оценка: </label>
                             <div class="col-sm-8">
@@ -82,17 +84,22 @@
                         </div>
                     </form>
 
+
                     <h2>Отзывы: </h2>
-                    <div class="feedback" th:each="feedback: ${item.feedbackSet}">
+                    <div class="feedback" th:each="feedback: ${feedbacks}">
                         <div class="feedback-head">
                             <span>[[${feedback.rate}]] <span class="text-warning">&#9733;</span></span>
                             <span>[[${feedback.client.name}]]</span>
-                            <span>[[${feedback.writtenDate}]]</span>
+                            <span>[[${feedback.dateFormat}]]</span>
+                            <span sec:authorize="hasRole('ADMIN')">
+                                <a th:href="@{'/feedback/delete/' + ${feedback.id}}">X</a>
+                            </span>
                         </div>
                         <div>
                             [[${feedback.comment}]]
                         </div>
                     </div>
+
 
                 </div>
             </div>
