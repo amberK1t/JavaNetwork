@@ -16,20 +16,24 @@
                     <tbody>
                     <tr class="text-center">
                         <td>
-                            <h2>[[${client.name}]]</h2>
+                            <div class="title">[[${client.user.getLogin()}]]</div>
                         </td>
                         <td></td>
 
                     </tr>
                     <tr>
-                        <td class="col-sm-5 text-center">
+                        <td class="col-sm-5 text-start">
+                            <div>Логин: [[${client.name}]]</div>
+                            <div>Номер телефона: [[${client.phoneNumber}]]</div>
+                            <div>Email: [[${client.email}]]</div>
+                        </td>
 
+                        <td class="col-sm-1 text-center align-middle container gy-lg-5">
+                            <a th:href="@{'/client/update/' + ${client.id}}">
+                                <img th:src="@{/img/ico/update-ico.png}" alt="pic" width="55vh">
+                            </a>
                         </td>
-                        <td class="col-sm-5 text-end stats">
-                            <div>Логин: [[${client.login}]]</div>
-                            <div>Имя: [[${client.name}]]</div>
-                            <div>Роль: [[${client.role}]]</div>
-                        </td>
+
                     </tr>
                     </tbody>
                 </table>

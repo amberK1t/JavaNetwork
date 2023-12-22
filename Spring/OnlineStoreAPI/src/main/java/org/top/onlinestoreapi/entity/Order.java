@@ -13,9 +13,6 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "desc_f")
-    private String description;
-
     @Column(name = "date_closed")
     private Date dateClosed;
 
@@ -31,7 +28,6 @@ public class Order {
 
     public Order() {
         id = 0;
-        description = "";
         dateClosed = null;
         closed = false;
     }
@@ -42,14 +38,6 @@ public class Order {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Client getClient() {
@@ -88,7 +76,6 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", description='" + description + '\'' +
                 ", client=" + client +
                 ", positionSet=" + positionSet +
                 '}';

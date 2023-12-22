@@ -40,7 +40,7 @@ public class Item {
     @OneToMany(mappedBy = "item")
     private Set<Position> positionSet;
 
-    @OneToMany(mappedBy = "item")
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     private Set<Feedback> feedbackSet;
 
     public Item() {

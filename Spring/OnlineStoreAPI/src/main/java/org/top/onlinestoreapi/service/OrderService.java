@@ -1,6 +1,5 @@
 package org.top.onlinestoreapi.service;
 
-import org.top.onlinestoreapi.entity.Client;
 import org.top.onlinestoreapi.entity.Order;
 import org.top.onlinestoreapi.entity.Position;
 

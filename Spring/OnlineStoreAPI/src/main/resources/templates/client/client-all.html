@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Клиенты</title>
@@ -22,39 +22,37 @@
                         [[${dangerMessage}]]
                     </p>
 
-                    <table class="table table-bordered">
-                        <tbody class="table">
+                    <table class="table table-bordered text-center">
+                        <thead class="table">
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <a class="btn btn-primary text-center" th:href="@{/client/new}">Добавить</a>
-                            </td>
+                            <th>
+                                Login
+                            </th>
+                            <th>
+                                Info
+                            </th>
+                            <th>
+                                Действия
+                            </th>
                         </tr>
+                        </thead>
+                        <tbody>
                         <tr th:if="${clients} != null" th:each="client: ${clients}">
                             <td class="col-sm-2 text-center">
                                 <a th:href="@{'/client/' + ${client.id}}">
-                                    <div class="title">[[${client.login}]]</div>
+                                    <div class="title">[[${client.user.getLogin()}]]</div>
                                 </a>
                             </td>
-                            <td class="col-sm-7">
+                            <td class="col-sm-7 text-start">
                                 <div>
-                                    <div>Логин: [[${client.login}]]</div>
-                                    <div>Имя: [[${client.name}]]</div>
-                                    <div>Роль: [[${client.role}]]</div>
+                                    <div>Логин: [[${client.name}]]</div>
+                                    <div>Номер телефона: [[${client.phoneNumber}]]</div>
+                                    <div>Email: [[${client.email}]]</div>
                                 </div>
                             </td>
                             <td class="col-sm-1 text-center align-middle container gy-lg-5">
                                 <a th:href="@{'/client/' + ${client.id}}">
                                     <img th:src="@{/img/ico/details-ico.png}" alt="pic" width="55vh">
-                                </a>
-
-                                <a th:href="@{'/client/update/' + ${client.id}}">
-                                    <img th:src="@{/img/ico/update-ico.png}" alt="pic" width="55vh">
-                                </a>
-
-                                <a th:href="@{'/client/delete/' + ${client.id}}">
-                                    <img th:src="@{/img/ico/delete-ico.png}" alt="pic" width="55vh">
                                 </a>
                             </td>
                         </tr>

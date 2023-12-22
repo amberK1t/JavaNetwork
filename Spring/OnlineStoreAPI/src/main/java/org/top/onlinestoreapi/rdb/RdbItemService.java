@@ -1,4 +1,4 @@
-package org.top.onlinestoreapi.rdb.goods;
+package org.top.onlinestoreapi.rdb;
 
 import org.springframework.stereotype.Service;
 import org.top.onlinestoreapi.entity.Item;

@@ -15,6 +15,12 @@ public class Client {
     @Column(name = "name_f")
     private String name;
 
+    @Column(name = "phone_f")
+    private Integer phoneNumber;
+
+    @Column(name = "email_f")
+    private String email;
+
     @OneToMany(mappedBy = "client")
     private Set<Order> orderSet;
 
@@ -51,6 +57,22 @@ public class Client {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(Integer phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Set<Order> getOrderSet() {

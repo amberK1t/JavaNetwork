@@ -73,12 +73,10 @@ public class ItemController {
         String imgData = Base64.getEncoder().encodeToString(img.getBytes());
         item.setImgData(imgData);
         Optional<Item> add = itemService.addNew(item);
-        if (add.isPresent()) {
-            redirectAttributes.addFlashAttribute(
-                    "successMessage",
-                    "Товар " + add.get().getName() + " успешно добавлен"
-                    );
-        }
+        add.ifPresent(value -> redirectAttributes.addFlashAttribute(
+                "successMessage",
+                "Товар " + value.getName() + " успешно добавлен"
+        ));
         return "redirect:/item";
     }
 

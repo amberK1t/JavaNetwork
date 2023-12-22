@@ -18,25 +18,9 @@ public class RdbFeedbackService implements FeedbackService {
     }
 
     @Override
-    public Iterable<Feedback> findAllByItemId(Integer itemId) {
-
-        return null;
-    }
-
-    @Override
-    public Optional<Feedback> findById(Integer id) {
-        return Optional.empty();
-    }
-
-    @Override
     public Feedback addFeedback(Feedback feedback) {
         feedback.setWrittenDate(new Date());
         return feedbackRepository.save(feedback);
-    }
-
-    @Override
-    public Optional<Feedback> update(Feedback feedback) {
-        return Optional.empty();
     }
 
     @Override

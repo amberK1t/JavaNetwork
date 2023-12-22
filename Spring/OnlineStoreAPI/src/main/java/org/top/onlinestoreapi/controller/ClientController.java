@@ -23,7 +23,7 @@ public class ClientController {
 
     @GetMapping("")
     public String getAll(Model model) {
-        Iterable<Client> clients = clientService.getAll();
+        Iterable<Client> clients = clientService.getAllByUserRole();
         model.addAttribute("clients", clients);
         return "client/client-all";
     }
@@ -42,40 +42,6 @@ public class ClientController {
                     );
             return "redirect:/client";
         }
-    }
-
-    @GetMapping("new")
-    public String getNew(Model model) {
-        Client client = new Client();
-        model.addAttribute("client", client);
-        return "client/add-new";
-    }
-
-    @PostMapping("new")
-    public String postNew(Client client, RedirectAttributes redirectAttributes) {
-        Optional<Client> add = clientService.add(client);
-        if (add.isPresent()) {
-            redirectAttributes.addFlashAttribute(
-                    "successMessage",
-                    "Клиент " + client.getUser().getLogin() + " успешно добавлен");
-        }
-        return "redirect:/client";
-    }
-
-    @GetMapping("delete/{id}")
-    public String deleteById(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
-        Optional<Client> deleted = clientService.deleteById(id);
-        if (deleted.isPresent()) {
-            redirectAttributes.addFlashAttribute(
-                    "successMessage",
-                    "Клиент с id " + id + " успешно удален");
-        } else {
-            redirectAttributes.addFlashAttribute(
-                    "dangerMessage",
-                    "Клиент с id " + id + " не найден"
-            );
-        }
-        return "redirect:/client";
     }
 
     @GetMapping("update/{id}")
