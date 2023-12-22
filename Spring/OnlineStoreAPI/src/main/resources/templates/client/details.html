@@ -23,7 +23,7 @@
                     </tr>
                     <tr>
                         <td class="col-sm-5 text-start">
-                            <div>Логин: [[${client.name}]]</div>
+                            <div>Имя: [[${client.name}]]</div>
                             <div>Номер телефона: [[${client.phoneNumber}]]</div>
                             <div>Email: [[${client.email}]]</div>
                         </td>
@@ -31,6 +31,10 @@
                         <td class="col-sm-1 text-center align-middle container gy-lg-5">
                             <a th:href="@{'/client/update/' + ${client.id}}">
                                 <img th:src="@{/img/ico/update-ico.png}" alt="pic" width="55vh">
+                            </a>
+
+                            <a th:href="@{'/client/delete/' + ${client.id}}">
+                                <img th:src="@{/img/ico/delete-ico.png}" alt="pic" width="55vh">
                             </a>
                         </td>
 

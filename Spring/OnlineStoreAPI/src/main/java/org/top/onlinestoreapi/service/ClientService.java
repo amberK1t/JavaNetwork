@@ -9,5 +9,6 @@ public interface ClientService {
     Optional<Client> getById(Integer id);
     Optional<Client> update(Client client);
     Optional<Client> findClientByUserLogin(String userLogin);
+    Optional<Client> deleteById(Integer id);
 
 }

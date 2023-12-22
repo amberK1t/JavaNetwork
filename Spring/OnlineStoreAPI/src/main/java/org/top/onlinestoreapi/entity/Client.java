@@ -24,10 +24,10 @@ public class Client {
     @OneToMany(mappedBy = "client")
     private Set<Order> orderSet;
 
-    @OneToOne(mappedBy = "client")
+    @OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
     private User user;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private Set<Feedback> feedbackSet;
 
     public Client() {

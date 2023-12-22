@@ -76,4 +76,20 @@ public class ClientController {
         return "redirect:/client";
     }
 
+    @GetMapping("delete/{id}")
+    public String deleteById(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+        Optional<Client> deleted = clientService.deleteById(id);
+        if (deleted.isPresent()) {
+            redirectAttributes.addFlashAttribute(
+                    "successMessage",
+                    "Клиент с id " + id + " успешно удален");
+        } else {
+            redirectAttributes.addFlashAttribute(
+                    "dangerMessage",
+                    "Клиент с id " + id + " не найден"
+            );
+        }
+        return "redirect:/client";
+    }
+
 }

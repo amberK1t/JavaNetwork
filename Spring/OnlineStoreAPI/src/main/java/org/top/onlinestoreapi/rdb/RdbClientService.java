@@ -46,4 +46,13 @@ public class RdbClientService implements ClientService {
     public Optional<Client> findClientByUserLogin(String userLogin) {
         return clientRepository.findClientByUserLogin(userLogin);
     }
+
+    @Override
+    public Optional<Client> deleteById(Integer id) {
+        Optional<Client> client = clientRepository.findById(id);
+        if (client.isPresent()) {
+            clientRepository.deleteById(id);
+        }
+        return client;
+    }
 }
